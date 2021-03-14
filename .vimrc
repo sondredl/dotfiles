@@ -1,5 +1,5 @@
 syntax on
-colorscheme zellner
+colorscheme zellner 
 
 set showcmd
 set showmatch

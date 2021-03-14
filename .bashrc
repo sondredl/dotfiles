@@ -1,3 +1,4 @@
+#remember to ONLY edit this file from ~/dotfiles/.bashrc as it reloads from there every time it is opened
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
@@ -90,7 +91,7 @@ fi
 
 # some more ls aliases
 alias ll='ls -alF'
-alias la='ls -A'
+alias la='ls -A1'
 alias l='ls -CF'
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -117,15 +118,31 @@ if ! shopt -oq posix; then
   fi
 fi
 
-# shortcut to log off user
+# ALIAS 
 alias signout='pkill -KILL -u sondre'
+alias root='cd && cd ../../ '
+alias ..='cd ..'
 
-#set background
+# EXPORT
+export EDITOR=vim
+export HISTCONTROL=ignoreboth
+
+# PROMPT
+PS1=' helloWorld $ '
+
+# READLINE MACROS
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
 
-feh --bg-fill Downloads/wallpaper_background.jpeg &
+#dotfile reload from this location
+\cp dotfiles/.vimrc .vimrc
+\cp dotfiles/.bashrc ~/.bashrc
+\cp dotfiles/config .config/i3/config
+\cp "dotfiles/.compton.conf" ".config/compton/.compton.conf"
+
+feh --bg-fill Downloads/wallpaper_background.jpeg 
 compton --config .config/compton/.compton.conf &
 
-echo hello world
+#shortcut to reload terminator
+alias reload='cd ~ && pkill compton && . ~/.bashrc && clear'
 
