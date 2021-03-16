@@ -1,0 +1,10 @@
+[user]
+	name = Sondre Lindkjølen
+	email = sondredl@gmail.com
+
+[core]
+	editor = vim
+
+[alias]
+    tree = log --graph --oneline --decorate
+

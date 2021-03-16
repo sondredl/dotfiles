@@ -141,6 +141,7 @@ setxkbmap no
 \cp dotfiles/config .config/i3/config
 \cp "dotfiles/.compton.conf" ".config/compton/.compton.conf"
 \cp "dotfiles/alacritty.yml" ".config/alacritty/alacritty.yml"
+\cp dotfiles/.gitconfig .gitconfig
 
 feh --bg-fill Pictures/linuxmint-ulyana/aandrews_tree.jpg 
 compton --config .config/compton/.compton.conf &
