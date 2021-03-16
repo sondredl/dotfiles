@@ -139,8 +139,9 @@ bind "set show-all-if-ambiguous on"
 \cp dotfiles/.bashrc ~/.bashrc
 \cp dotfiles/config .config/i3/config
 \cp "dotfiles/.compton.conf" ".config/compton/.compton.conf"
+\cp "dotfiles/alacritty.yml" ".config/alacritty/alacritty.yml"
 
-feh --bg-fill Downloads/wallpaper_background.jpeg 
+feh --bg-fill Pictures/linuxmint-ulyana/aandrews_tree.jpg 
 compton --config .config/compton/.compton.conf &
 
 #shortcut to reload terminator
