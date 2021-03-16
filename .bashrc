@@ -143,7 +143,7 @@ setxkbmap no
 \cp "dotfiles/alacritty.yml" ".config/alacritty/alacritty.yml"
 \cp dotfiles/.gitconfig .gitconfig
 
-feh --bg-fill Pictures/linuxmint-ulyana/aandrews_tree.jpg 
+feh --bg-fill Pictures/linuxmint-ulyana/aandrews_tree.jpg &
 compton --config .config/compton/.compton.conf &
 
 #shortcut to reload terminator
