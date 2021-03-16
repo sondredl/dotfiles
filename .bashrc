@@ -133,6 +133,7 @@ PS1=' helloWorld $ '
 # READLINE MACROS
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
+setxkbmap no
 
 #dotfile reload from this location
 \cp dotfiles/.vimrc .vimrc
