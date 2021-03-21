@@ -81,13 +81,13 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-<<<<<<< HEAD
+#<<<<<<< HEAD
     alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-=======
+#=======
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
->>>>>>> c3610767c200455447fe811656b404ed2d49d362
+#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -107,8 +107,8 @@ alias wamp='cd ~/. && cd /mnt/c/wamp/www/'
 alias rt='cd ~/../..'
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
 export PATH="$HOME/.emaacs.d/bin:$PATH"
-=======
->>>>>>> c3610767c200455447fe811656b404ed2d49d362
+#=======
+#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -133,8 +133,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
-<<<<<<< HEAD
-=======
+#<<<<<<< HEAD
+#=======
 
 # ALIAS 
 alias signout='pkill -KILL -u sondre'
@@ -168,4 +168,4 @@ compton --config .config/compton/.compton.conf &
 #shortcut to reload terminator
 alias reload='cd ~ && pkill compton && . ~/.bashrc && clear'
 
->>>>>>> c3610767c200455447fe811656b404ed2d49d362
+#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
