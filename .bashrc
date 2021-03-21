@@ -2,7 +2,7 @@
 #=======
 #remember to ONLY edit this file from ~/dotfiles/.bashrc as it reloads from there every time it is opened
 
->>>>>>> c3610767c200455447fe811656b404ed2d49d362
+#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -101,12 +101,12 @@ fi
 alias ll='ls -alF'
 alias la='ls -A1'
 alias l='ls -CF'
-<<<<<<< HEAD
+#<<<<<<< HEAD
 alias home="cd ~/. && cd /mnt/c/Users/sondr/"
 alias wamp='cd ~/. && cd /mnt/c/wamp/www/'
 alias rt='cd ~/../..'
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
-export PATH="$HOME/.emaacs.d/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
 #=======
 #>>>>>>> c3610767c200455447fe811656b404ed2d49d362
 
@@ -147,23 +147,23 @@ export EDITOR=vim
 export HISTCONTROL=ignoreboth
 
 # PROMPT
-PS1=' helloWorld $ '
+#PS1=' helloWorld $ '
 
 # READLINE MACROS
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
-setxkbmap no
+#setxkbmap no
 
 #dotfile reload from this location
-\cp dotfiles/.vimrc .vimrc
-\cp dotfiles/.bashrc ~/.bashrc
-\cp dotfiles/config .config/i3/config
-\cp "dotfiles/.compton.conf" ".config/compton/.compton.conf"
-\cp "dotfiles/alacritty.yml" ".config/alacritty/alacritty.yml"
-\cp dotfiles/.gitconfig .gitconfig
+#\cp dotfiles/.vimrc .vimrc
+#\cp dotfiles/.bashrc ~/.bashrc
+#\cp dotfiles/config .config/i3/config
+#\cp "dotfiles/.compton.conf" ".config/compton/.compton.conf"
+#\cp "dotfiles/alacritty.yml" ".config/alacritty/alacritty.yml"
+#\cp dotfiles/.gitconfig .gitconfig
 
-feh --bg-fill Pictures/linuxmint-ulyana/aandrews_tree.jpg &
-compton --config .config/compton/.compton.conf &
+#feh --bg-fill Pictures/linuxmint-ulyana/aandrews_tree.jpg &
+#compton --config .config/compton/.compton.conf &
 
 #shortcut to reload terminator
 alias reload='cd ~ && pkill compton && . ~/.bashrc && clear'
