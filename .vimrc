@@ -7,8 +7,8 @@ nnoremap k j
 nnoremap l k
 nnoremap ø l
 
-nnoremap <C-j> <C-w><C-h> 
-nnoremap <C-k> <C-w><C-j>
-nnoremap <C-l> <C-w><C-k> 
-nnoremap <C-ø> <C-w><C-l> 
+nnoremap <C-u> <C-w><C-h> 
+nnoremap <C-i> <C-w><C-j>
+nnoremap <C-o> <C-w><C-k> 
+nnoremap <C-p> <C-w><C-l> 
 
