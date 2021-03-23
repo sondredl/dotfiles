@@ -1,6 +1,12 @@
+#<<<<<<< HEAD
+#=======
 #remember to ONLY edit this file from ~/dotfiles/.bashrc as it reloads from there every time it is opened
 
+<<<<<<< HEAD
 
+=======
+#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
+>>>>>>> a4b7cce541111f61f3085603eb20e48f85557035
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -79,8 +85,13 @@ esac
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
+#<<<<<<< HEAD
+    alias dir='dir --color=auto'
+    alias vdir='vdir --color=auto'
+#=======
     #alias dir='dir --color=auto'
     #alias vdir='vdir --color=auto'
+#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
 
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
@@ -94,6 +105,14 @@ fi
 alias ll='ls -alF'
 alias la='ls -A1'
 alias l='ls -CF'
+#<<<<<<< HEAD
+alias home="cd ~/. && cd /mnt/c/Users/sondr/"
+alias wamp='cd ~/. && cd /mnt/c/wamp/www/'
+alias rt='cd ~/../..'
+export LS_COLORS=$LS_COLORS:'ow=1;34:';
+export PATH="$HOME/.emacs.d/bin:$PATH"
+#=======
+#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -118,6 +137,8 @@ if ! shopt -oq posix; then
     . /etc/bash_completion
   fi
 fi
+#<<<<<<< HEAD
+#=======
 
 # ALIAS 
 alias signout='pkill -KILL -u sondre'
@@ -130,25 +151,33 @@ export EDITOR=vim
 export HISTCONTROL=ignoreboth
 
 # PROMPT
+<<<<<<< HEAD
 PS1="\e[0;31m[\u@ \w]\$ \e[m "
+=======
+#PS1=' helloWorld $ '
+>>>>>>> a4b7cce541111f61f3085603eb20e48f85557035
 
 # READLINE MACROS
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
 #setxkbmap no
+<<<<<<< HEAD
 #bind "xset r rate 200 50"
+=======
+>>>>>>> a4b7cce541111f61f3085603eb20e48f85557035
 
 #dotfile reload from this location
-\cp dotfiles/.vimrc .vimrc
-\cp dotfiles/.bashrc ~/.bashrc
-\cp dotfiles/config .config/i3/config
-\cp "dotfiles/.compton.conf" ".config/compton/.compton.conf"
-\cp "dotfiles/alacritty.yml" ".config/alacritty/alacritty.yml"
-\cp dotfiles/.gitconfig .gitconfig
+#\cp dotfiles/.vimrc .vimrc
+#\cp dotfiles/.bashrc ~/.bashrc
+#\cp dotfiles/config .config/i3/config
+#\cp "dotfiles/.compton.conf" ".config/compton/.compton.conf"
+#\cp "dotfiles/alacritty.yml" ".config/alacritty/alacritty.yml"
+#\cp dotfiles/.gitconfig .gitconfig
 
-feh --bg-fill Pictures/linuxmint-ulyana/aandrews_tree.jpg &
-compton --config .config/compton/.compton.conf &
+#feh --bg-fill Pictures/linuxmint-ulyana/aandrews_tree.jpg &
+#compton --config .config/compton/.compton.conf &
 
 #shortcut to reload terminator
 alias reload='cd ~ && pkill compton && . ~/.bashrc && clear'
 
+#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
