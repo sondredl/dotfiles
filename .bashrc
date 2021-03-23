@@ -1,5 +1,6 @@
 #remember to ONLY edit this file from ~/dotfiles/.bashrc as it reloads from there every time it is opened
 
+
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -129,12 +130,13 @@ export EDITOR=vim
 export HISTCONTROL=ignoreboth
 
 # PROMPT
-PS1=' helloWorld $ '
+PS1="\e[0;31m[\u@ \w]\$ \e[m "
 
 # READLINE MACROS
 bind "set completion-ignore-case on"
 bind "set show-all-if-ambiguous on"
-setxkbmap no
+#setxkbmap no
+#bind "xset r rate 200 50"
 
 #dotfile reload from this location
 \cp dotfiles/.vimrc .vimrc
