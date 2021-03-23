@@ -1,8 +1,4 @@
 [user]
-#<<<<<<< HEAD
-#	name = =
-#	email = =
-#=======
 	name = Sondre Lindkjølen
 	email = sondredl@gmail.com
 
@@ -12,4 +8,3 @@
 [alias]
     tree = log --graph --oneline --decorate
 
-#>>>>>>> c3610767c200455447fe811656b404ed2d49d362
