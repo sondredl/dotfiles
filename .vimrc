@@ -1,3 +1,4 @@
+autocmd! bufwritepost .vimrc source %
 syntax on
 colorscheme zellner
 set nu relativenumber
@@ -10,7 +11,6 @@ set smartcase
 set incsearch
 set autowrite
 
-set nu relativenumber
 set cursorline
 
 set autoindent
@@ -22,6 +22,7 @@ set complete+=kspell
 set completeopt=menuone,longest
 
 filetype plugin indent on
+filetype plugin on
 nnoremap j h
 nnoremap k j
 nnoremap l k
@@ -45,6 +46,15 @@ noremap <C-h> :vertical resize +3 <CR>
 noremap <C-y> :resize +3 <CR>
 noremap <C-n> <C-w>=
 
+" FILE BROWSING:
 "map <F23> :NERDTreeToggle<CR>
-let NERDTreeShowHidden=1
+
+let g:netrw_banner=0        "disable annoying banner
+let g:netrw_browse_split=3          "open splits to the right
+let g:netrw_liststyle=3     "tree view
+let g:netrw_bufsettings= 'noma nomod relativenumber nobl nowrap ro'
+"let g:netrw_list_hide=netrw_gitignore#Hide()
+"let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
+
+set omnifunc=suntaxcomplete#Complete
 
