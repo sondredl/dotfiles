@@ -47,14 +47,15 @@ noremap <C-y> :resize +3 <CR>
 noremap <C-n> <C-w>=
 
 " FILE BROWSING:
-"map <F23> :NERDTreeToggle<CR>
+set path+=**
+set wildmode=longest:full,full
+set wildignorecase          "case insensitive file search
+set wildignore=\*.git/\*    "ignores git-stuff in searches
 
 let g:netrw_banner=0        "disable annoying banner
 let g:netrw_browse_split=3          "open splits to the right
 let g:netrw_liststyle=3     "tree view
 let g:netrw_bufsettings= 'noma nomod relativenumber nobl nowrap ro'
-"let g:netrw_list_hide=netrw_gitignore#Hide()
-"let g:netrw_list_hide.=',\(^\|\s\s\)\zs\.\S\+'
 
 set omnifunc=suntaxcomplete#Complete
 

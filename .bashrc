@@ -1,17 +1,13 @@
-<<<<<<< HEAD
 
-source .laptop.sh
+#source .laptop.sh
 #source .desktop.sh
-=======
 #remember to ONLY edit this file from ~/dotfiles/.bashrc as it reloads from there every time it is opened
 
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
->>>>>>> eb41dc4528c2fdd2418c6e60456db787aca792a7
 
-: << '###'
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -103,15 +99,12 @@ fi
 alias ll='ls -alF'
 alias la='ls -A1'
 alias l='ls -CF'
-<<<<<<< HEAD
 
-=======
 alias home="cd ~/. && cd /mnt/c/Users/sondr/"
 alias wamp='cd ~/. && cd /mnt/c/wamp/www/'
 alias rt='cd ~/../..'
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
 export PATH="$HOME/.emacs.d/bin:$PATH"
->>>>>>> eb41dc4528c2fdd2418c6e60456db787aca792a7
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -137,10 +130,8 @@ if ! shopt -oq posix; then
   fi
 fi
 
-<<<<<<< HEAD
 
 ###
-=======
 # ALIAS 
 alias signout='pkill -KILL -u sondre'
 alias root='cd && cd ../../ '
@@ -175,4 +166,3 @@ bind "set show-all-if-ambiguous on"
 #shortcut to reload terminator
 alias reload='cd ~ && pkill compton && . ~/.bashrc && clear'
 
->>>>>>> eb41dc4528c2fdd2418c6e60456db787aca792a7
