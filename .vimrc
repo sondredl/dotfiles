@@ -5,6 +5,9 @@ set nu relativenumber
 set visualbell
 set noswapfile
 
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview
+
 set showcmd
 set showmatch
 set ignorecase

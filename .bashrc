@@ -62,6 +62,7 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+
 if [ "$color_prompt" = yes ]; then
     PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
@@ -93,17 +94,9 @@ if [ -x /usr/bin/dircolors ]; then
 fi
 
 # colored GCC warnings and errors
-#export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
+export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
 
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A1'
-alias l='ls -CF'
-
-alias home="cd ~/. && cd /mnt/c/Users/sondr/"
-alias wamp='cd ~/. && cd /mnt/c/wamp/www/'
-alias rt='cd ~/../..'
-export LS_COLORS=$LS_COLORS:'ow=1;34:';
 export PATH="$HOME/.emacs.d/bin:$PATH"
 
 # Add an "alert" alias for long running commands.  Use like so:
@@ -130,9 +123,15 @@ if ! shopt -oq posix; then
   fi
 fi
 
-
-###
 # ALIAS 
+alias ll='ls -alF'
+alias la='ls -A1'
+alias l='ls -CF'
+export LS_COLORS=$LS_COLORS:'ow=1;34:';
+
+alias home="cd ~/. && cd /mnt/c/Users/sondr/"
+alias wamp='cd ~/. && cd /mnt/c/wamp/www/'
+alias rt='cd ~/../..'
 alias signout='pkill -KILL -u sondre'
 alias root='cd && cd ../../ '
 alias ..='cd ..'
@@ -150,8 +149,16 @@ export EDITOR=vim
 export HISTCONTROL=ignoreboth
 
 # PROMPT
-PS1="\e[0;31m[\u@ \w]\$ \e[m "
+#PS1="\e[0;31m[\u@ \w]\$ \e[m "
 #PS1=' helloWorld $ '
+#PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u${prompt_symbol}\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
+
+git_branch() {
+    git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+
+export PS1="┌──[\u@\h]-[\w]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\n└─$ "
+    
 
 # READLINE MACROS
 bind "set completion-ignore-case on"
@@ -171,5 +178,5 @@ bind "set show-all-if-ambiguous on"
 #compton --config .config/compton/.compton.conf &
 
 #shortcut to reload terminator
-alias reload='cd ~ && pkill compton && . ~/.bashrc && clear'
+#alias reload='cd ~ && pkill compton && . ~/.bashrc && clear'
 
