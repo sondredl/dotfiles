@@ -1,1 +1,10 @@
 History.md
+.bash_history
+.bash_logout
+.cache/
+.config/
+.profile
+.sudo_as_admin_successful
+.vim/
+.viminfo
+vimb/

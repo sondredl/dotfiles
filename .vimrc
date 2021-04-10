@@ -3,6 +3,7 @@ syntax on
 colorscheme zellner
 set nu relativenumber
 set visualbell
+set noswapfile
 
 set showcmd
 set showmatch
@@ -47,7 +48,8 @@ noremap <C-y> :resize +3 <CR>
 noremap <C-n> <C-w>=
 
 " FILE BROWSING:
-set path+=**
+set path+=**        "search into subwfolders & provide file-related tabcomplete
+set wildmenu                "display all maching files when tabcomplete
 set wildmode=longest:full,full
 set wildignorecase          "case insensitive file search
 set wildignore=\*.git/\*    "ignores git-stuff in searches

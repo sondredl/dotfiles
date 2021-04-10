@@ -139,6 +139,11 @@ alias ..='cd ..'
 alias emulator='ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)'
 alias v='vim'
 alias v.='vim .'
+# git aliases
+alias gt='git tree'
+alias gs='git status'
+alias ga='git add'
+alias gc='git commit'
 
 # EXPORT
 export EDITOR=vim
