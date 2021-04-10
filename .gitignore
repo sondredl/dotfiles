@@ -1,0 +1,10 @@
+.bash_history
+.bash_logout
+.cache/
+.config
+.git-credentials
+.profile
+.sudo_as_admin_successful
+.vim/
+.viminfo
+vimb/
