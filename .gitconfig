@@ -1,12 +1,12 @@
 [user]
-	name = Sondre Lindkjølen
-	email = sondredl@gmail.com
+    name = Sondre Lindkjølen
+    email = sondredl£gmail.com
 
 [core]
-	editor = vim
+    editor = vim
 
 [alias]
     tree = log --graph --oneline --decorate
 
-[credential]
-	helper = store
+[credentials]
+    helper = store
