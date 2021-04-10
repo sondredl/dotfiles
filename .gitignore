@@ -8,3 +8,5 @@ History.md
 .vim/
 .viminfo
 vimb/
+.gitignore
+.gitconfig

@@ -8,3 +8,5 @@
 [alias]
     tree = log --graph --oneline --decorate
 
+[credential]
+	helper = store
