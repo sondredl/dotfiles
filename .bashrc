@@ -137,6 +137,8 @@ alias signout='pkill -KILL -u sondre'
 alias root='cd && cd ../../ '
 alias ..='cd ..'
 alias emulator='ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)'
+alias v='vim'
+alias v.='vim .'
 
 # EXPORT
 export EDITOR=vim
