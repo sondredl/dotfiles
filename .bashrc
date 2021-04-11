@@ -128,13 +128,20 @@ alias ll='ls -alF'
 alias la='ls -A1'
 alias l='ls -CF'
 export LS_COLORS=$LS_COLORS:'ow=1;34:';
+#alias ..='cd ..'
+alias cl='clear'
+alias mv='mv -i'
+alias rm='rm -i'
+alias cp='cp -i'
+# auto-cd
+shopt -s autocd
+alias cheat='curl cheat.sh'
+alias python='python3'
 
 alias home="cd ~/. && cd /mnt/c/Users/sondr/"
 alias wamp='cd ~/. && cd /mnt/c/wamp/www/'
-alias rt='cd ~/../..'
 alias signout='pkill -KILL -u sondre'
 alias root='cd && cd ../../ '
-alias ..='cd ..'
 alias emulator='ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)'
 alias v='vim'
 alias v.='vim .'
@@ -157,7 +164,11 @@ git_branch() {
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-export PS1="┌──[\u@\h]-[\w]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\n└─$ "
+prompt_color='\[\033[;32\]'
+info_color='\[\033[1;34m\]'
+#export PS1="\n$prompt_color'┌──'[\u@\h]-[\w]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\n└─$ "
+export PS1="\n\[\e[36m┌─\e[0m[\e[35m\u\e[0m@\[\e[1;30m\h\[\e[0m\]]-[\[\e[1;35m\w\[\e[0m\]]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\n\[\e[36m└──\[\e[0m\]$ "
+
     
 
 # READLINE MACROS
