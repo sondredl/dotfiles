@@ -1,9 +1,3 @@
-
-#source .laptop.sh
-#source .desktop.sh
-#remember to ONLY edit this file from ~/dotfiles/.bashrc as it reloads from there every time it is opened
-
-
 # ~/.bashrc: executed by bash(1) for non-login shells.
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
@@ -14,12 +8,9 @@ case $- in
       *) return;;
 esac
 
-# don't put duplicate lines or lines starting with space in the history.
-# See bash(1) for more options
-HISTCONTROL=ignoreboth
-
 # append to the history file, don't overwrite it
 shopt -s histappend
+HISTCONTROL=ignoreboth
 
 # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
 HISTSIZE=1000
@@ -27,7 +18,7 @@ HISTFILESIZE=2000
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
-shopt -s checkwinsize
+#shopt -s checkwinsize
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -41,53 +32,14 @@ if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
     debian_chroot=$(cat /etc/debian_chroot)
 fi
 
-# set a fancy prompt (non-color, unless we know we "want" color)
-case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
-esac
-
-# uncomment for a colored prompt, if the terminal has the capability; turned
-# off by default to not distract the user: the focus in a terminal window
-# should be on the output of commands, not on the prompt
-#force_color_prompt=yes
-
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
-
-
-if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
-else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-fi
-unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
     test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
     alias ls='ls --color=auto'
-    alias dir='dir --color=auto'
+#    alias dir='dir --color=auto'
+#    alias vdir='vdir --color=auto'
+#    alias dir='dir --color=auto'
     alias vdir='vdir --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
     alias grep='grep --color=auto'
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
@@ -127,17 +79,13 @@ fi
 alias ll='ls -alF'
 alias la='ls -A1'
 alias l='ls -CF'
-export LS_COLORS=$LS_COLORS:'ow=1;34:';
-#alias ..='cd ..'
 alias cl='clear'
 alias mv='mv -i'
 alias rm='rm -i'
 alias cp='cp -i'
-# auto-cd
 shopt -s autocd
 alias cheat='curl cheat.sh'
 alias python='python3'
-
 alias home="cd ~/. && cd /mnt/c/Users/sondr/"
 alias wamp='cd ~/. && cd /mnt/c/wamp/www/'
 alias signout='pkill -KILL -u sondre'
@@ -145,30 +93,35 @@ alias root='cd && cd ../../ '
 alias emulator='ps -o 'cmd=' -p $(ps -o 'ppid=' -p $$)'
 alias v='vim'
 alias v.='vim .'
-# git aliases
 alias gt='git tree'
 alias gs='git status'
 alias ga='git add'
 alias gc='git commit'
+alias taskburn='task burndown.daily'
 
 # EXPORT
 export EDITOR=vim
 export HISTCONTROL=ignoreboth
+#export LS_COLORS=$LS_COLORS:'ow=1;34:';
 
-# PROMPT
-#PS1="\e[0;31m[\u@ \w]\$ \e[m "
-#PS1=' helloWorld $ '
-#PS1=$prompt_color'┌──${debian_chroot:+($debian_chroot)──}${VIRTUAL_ENV:+(\[\033[0;1m\]$(basename $VIRTUAL_ENV)'$prompt_color')}('$info_color'\u${prompt_symbol}\h'$prompt_color')-[\[\033[0;1m\]\w'$prompt_color']\n'$prompt_color'└─'$info_color'\$\[\033[0m\] '
-
-git_branch() {
+git_branch() {      #gets current dir git branch
     git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
 }
 
-prompt_color='\[\033[;32\]'
-info_color='\[\033[1;34m\]'
-#export PS1="\n$prompt_color'┌──'[\u@\h]-[\w]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\n└─$ "
-export PS1="\n\[\e[36m┌─\e[0m[\e[35m\u\e[0m@\[\e[1;30m\h\[\e[0m\]]-[\[\e[1;35m\w\[\e[0m\]]\[\033[00;32m\]\$(git_branch)\[\033[00m\]\n\[\e[36m└──\[\e[0m\]$ "
+task_urgent() {     #gets most urgent taskwarrior task descripsion
+    task +PENDING limit:1 list rc.report.list.sort=urgency- rc.report.list.columns=description rc.report.list.labels=description rc.verbose=nothing | tr -d ''
+}
 
+p_c='\e[35m'            #prompt color
+d_c='\e[1;35m'          #directory color
+n_c='\e[36m'            #newline color
+g_c='\[\033[00;32m\]'   #git color
+t_c='\e[31m'            #task color
+e_gc='\[\033[00m\]'     #end git color
+e_c='\e[00m'            #end color
+export PS1="$n_c┌─$e_c[$p_c\u@\h$e_c]-[$d_c\w$e_c] $g_c$(git_branch)$e_gc
+$n_c|──$e_c$t_c $(task_urgent) $e_c
+$n_c└──$e_c $ "
     
 
 # READLINE MACROS
