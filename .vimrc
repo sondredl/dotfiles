@@ -4,6 +4,7 @@ syntax on
 colorscheme zellner
 set nu relativenumber
 set visualbell
+set belloff=all
 set noswapfile
 
 "reopen on same line as closed
