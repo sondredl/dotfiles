@@ -1,11 +1,13 @@
-
+" auto run source ~/.vimrc on saving this file
 autocmd! bufwritepost .vimrc source %
+
 syntax on
-colorscheme zellner
-set nu relativenumber
+colorscheme evening
 set visualbell
 set belloff=all
 set noswapfile
+"set paste
+"set nopaste
 
 "reopen on same line as closed
 autocmd BufWinLeave *.* mkview
@@ -21,6 +23,7 @@ set complete+=kspell
 set completeopt=menuone,longest
 
 set cursorline
+set cursorcolumn
 
 set autoindent
 set expandtab
@@ -30,7 +33,7 @@ set softtabstop=4
 filetype plugin indent on
 filetype plugin on
 
-noremap y "y
+" noremap y "y
 
 " SPLIT NAVIGATION:
 " noremap <C-u> <C-w><C-h> 
@@ -53,7 +56,7 @@ set wildignore=\*.git/\*    "ignores git-stuff in searches
 let g:netrw_banner=0        "disable annoying banner
 let g:netrw_browse_split=3          "open splits to the right
 let g:netrw_liststyle=3     "tree view
-let g:netrw_bufsettings= 'noma nomod relativenumber nobl nowrap ro'
+"let g:netrw_bufsettings= 'noma nomod relativenumber nobl nowrap ro'
 
 set omnifunc=suntaxcomplete#Complete
 
