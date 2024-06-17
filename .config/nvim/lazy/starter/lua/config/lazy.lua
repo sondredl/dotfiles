@@ -1,3 +1,70 @@
+-- The line beneath this is called `modeline`. See `:help modeline`
+-- vim: ts=2 sts=2 sw=2 et
+-- Auto run source init.lua on saving this file
+vim.cmd("autocmd BufWritePost init.lua source %")
+
+vim.cmd("syntax on")
+vim.cmd("colorscheme evening")
+vim.opt.visualbell = true
+vim.opt.belloff:remove("all")
+vim.opt.swapfile = false
+-- vim.opt.paste = false
+
+-- Reopen on the same line as closed
+vim.cmd("autocmd BufWinLeave *.* mkview")
+vim.cmd("autocmd BufWinEnter *.* silent! loadview")
+
+vim.opt.showcmd = true
+vim.opt.showmatch = true
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.incsearch = true
+vim.opt.autowrite = true
+vim.opt.complete:append("kspell")
+vim.opt.completeopt:append("menuone")
+vim.opt.completeopt:append("longest")
+
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+
+vim.opt.foldmethod = "indent"
+
+vim.opt.autoindent = true
+vim.opt.expandtab = true
+vim.opt.shiftwidth = 4
+vim.opt.softtabstop = 4
+
+vim.cmd("filetype plugin indent on")
+vim.cmd("filetype plugin on")
+
+-- vim.api.nvim_set_keymap('n', 'y', '"y', { noremap = true })
+
+-- Split Navigation
+-- vim.api.nvim_set_keymap('n', '<C-u>', '<C-w><C-h>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<C-i>', '<C-w><C-j>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<C-o>', '<C-w><C-k>', { noremap = true })
+-- vim.api.nvim_set_keymap('n', '<C-p>', '<C-w><C-l>', { noremap = true })
+
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+vim.api.nvim_set_keymap("n", "<C-h>", ":vertical resize +3<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-y>", ":resize +3<CR>", { noremap = true })
+vim.api.nvim_set_keymap("n", "<C-n>", "<C-w>=", { noremap = true })
+
+-- File Browsing
+vim.opt.path:append("**")
+vim.opt.wildmenu = true
+vim.opt.wildmode = "longest:full,full"
+vim.opt.wildignorecase = true
+vim.opt.wildignore = "*.git/*"
+
+vim.g.netrw_banner = 0
+vim.g.netrw_browse_split = 3
+vim.g.netrw_liststyle = 3
+-- vim.g.netrw_bufsettings = 'noma nomod relativenumber nobl nowrap ro'
+
+vim.opt.omnifunc = "syntaxcomplete#Complete"
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
@@ -805,68 +872,3 @@ require("lazy").setup({
     },
   },
 })
-
--- The line beneath this is called `modeline`. See `:help modeline`
--- vim: ts=2 sts=2 sw=2 et
--- Auto run source init.lua on saving this file
-vim.cmd("autocmd BufWritePost init.lua source %")
-
-vim.cmd("syntax on")
-vim.cmd("colorscheme evening")
-vim.opt.visualbell = true
-vim.opt.belloff:remove("all")
-vim.opt.swapfile = false
--- vim.opt.paste = false
-
--- Reopen on the same line as closed
-vim.cmd("autocmd BufWinLeave *.* mkview")
-vim.cmd("autocmd BufWinEnter *.* silent! loadview")
-
-vim.opt.showcmd = true
-vim.opt.showmatch = true
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.incsearch = true
-vim.opt.autowrite = true
-vim.opt.complete:append("kspell")
-vim.opt.completeopt:append("menuone")
-vim.opt.completeopt:append("longest")
-
-vim.opt.cursorline = true
-vim.opt.cursorcolumn = true
-
-vim.opt.autoindent = true
-vim.opt.expandtab = true
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
-
-vim.cmd("filetype plugin indent on")
-vim.cmd("filetype plugin on")
-
--- vim.api.nvim_set_keymap('n', 'y', '"y', { noremap = true })
-
--- Split Navigation
--- vim.api.nvim_set_keymap('n', '<C-u>', '<C-w><C-h>', { noremap = true })
--- vim.api.nvim_set_keymap('n', '<C-i>', '<C-w><C-j>', { noremap = true })
--- vim.api.nvim_set_keymap('n', '<C-o>', '<C-w><C-k>', { noremap = true })
--- vim.api.nvim_set_keymap('n', '<C-p>', '<C-w><C-l>', { noremap = true })
-
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.api.nvim_set_keymap("n", "<C-h>", ":vertical resize +3<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-y>", ":resize +3<CR>", { noremap = true })
-vim.api.nvim_set_keymap("n", "<C-n>", "<C-w>=", { noremap = true })
-
--- File Browsing
-vim.opt.path:append("**")
-vim.opt.wildmenu = true
-vim.opt.wildmode = "longest:full,full"
-vim.opt.wildignorecase = true
-vim.opt.wildignore = "*.git/*"
-
-vim.g.netrw_banner = 0
-vim.g.netrw_browse_split = 3
-vim.g.netrw_liststyle = 3
--- vim.g.netrw_bufsettings = 'noma nomod relativenumber nobl nowrap ro'
-
-vim.opt.omnifunc = "syntaxcomplete#Complete"
