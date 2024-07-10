@@ -149,6 +149,7 @@ alias go="/c/Program\ Files/Go/bin/go.exe"
 alias ll="ls -all"
 alias vim="/usr/bin/vim.basic"
 # alias vim="nvim"
+alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
 
 check_and_connect_expressvpn() {
 	status=$(expressvpn status | grep -o "Connected to")
