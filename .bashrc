@@ -138,9 +138,9 @@ set -o vi
 set show-mode-in-prompt on
 set vi-ins-mode-string "\1\e[6 q\2ins"
 set vi-cmd-mode-string "\1\e[2 q\2cmd"
-let &t_SI = "\e[5 q"
-let &t_EI = "\e[2 q"
-let &t_ti .= "\<esc>[2 q"
+# let &t_SI = "\e[5 q"
+# let &t_EI = "\e[2 q"
+# let &t_ti .= "\<esc>[2 q"
 
 alias ga="git add"
 alias gs="git status"
