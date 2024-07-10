@@ -70,6 +70,7 @@ if [ "$color_prompt" = yes ]; then
 else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
+PS0='\[\e[2 q\]'
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
@@ -126,6 +127,7 @@ if ! shopt -oq posix; then
   fi
 fi
 
+# remap caps to ctrl+escape and escape to caps
 xmodmap -e 'keycode 9 = Caps_Lock'
 setxkbmap -option 'caps:swapescape' -option 'caps:ctrl_modifier'
 xmodmap -e 'keycode 255 = Escape'
@@ -133,6 +135,12 @@ xcape -e '#66=Escape'
 
 
 set -o vi
+set show-mode-in-prompt on
+set vi-ins-mode-string "\1\e[6 q\2ins"
+set vi-cmd-mode-string "\1\e[2 q\2cmd"
+let &t_SI = "\e[5 q"
+let &t_EI = "\e[2 q"
+let &t_ti .= "\<esc>[2 q"
 
 alias ga="git add"
 alias gs="git status"
@@ -179,13 +187,17 @@ check_and_start_redshift_gtk
 check_and_start_cerebro
 check_and_connect_expressvpn
 
-# set show-mode-in-prompt on
-# set vi-ins-mode-string \1\e[6 q\2
-# set vi-cmd-mode-string \1\e[2 q\2
+# if [ -n "$BASH_VERSION" -a -n "$PS1" ]; then
+#         # include .bashrc if it exists
+#             if [ -f "$HOME/.bashrc" ]; then
+#                     . "$HOME/.bashrc"
+#                         fi
+# fi
+
 
 # optionally:
 # switch to block cursor before executing a command
-set keymap vi-insert
+# set keymap vi-insert
 # RETURN: "\e\n"
 
 #   copilot_what-the-shell () {

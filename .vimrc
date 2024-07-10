@@ -24,6 +24,8 @@ set completeopt=menuone,longest
 
 set cursorline
 set cursorcolumn
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
 
 set autoindent
 set expandtab
