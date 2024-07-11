@@ -151,6 +151,9 @@ alias vim="/usr/bin/vim.basic"
 # alias vim="nvim"
 alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
 
+# path exports
+export PATH="$PATH:$HOME/Documents/GitHub/alacritty/target/release"
+
 check_and_connect_expressvpn() {
 	status=$(expressvpn status | grep -o "Connected to")
 
@@ -178,7 +181,7 @@ function check_and_start_cerebro
 {
 	if ! pgrep -x "cerebro" > /dev/null; then
 		echo "cerebro not running, starting serebro"
-		./Downloads/Cerebro-0.11.0.AppImage &
+		./.local/bin/Cerebro-0.11.0.AppImage &
 	else
 		echo "cerebro is running"
 	fi
@@ -252,3 +255,4 @@ check_and_connect_expressvpn
 #   };
 # alias 'gh?'='copilot_gh-assist';
 # alias 'wts'='copilot_what-the-shell';
+#. "$HOME/.cargo/env"
