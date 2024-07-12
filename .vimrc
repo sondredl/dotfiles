@@ -1,7 +1,7 @@
 autocmd! bufwritepost ~/.vimrc source ~/.vimrc " auto run source ~/.vimrc on saving this file
 
 syntax on
-set relativenumber
+set nu relativenumber
 colorscheme murphy
 set visualbell
 set belloff=all
