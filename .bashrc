@@ -181,13 +181,13 @@ function check_and_start_cerebro
 {
 	if ! pgrep -x "cerebro" > /dev/null; then
 		echo "cerebro not running, starting serebro"
-		./.local/bin/Cerebro-0.11.0.AppImage &
+		/opt/Cerebro-0.11.0.AppImage &
 	else
 		echo "cerebro is running"
 	fi
 }
 
 check_and_start_redshift_gtk
-# check_and_start_cerebro
+check_and_start_cerebro
 check_and_connect_expressvpn
 
