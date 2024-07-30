@@ -159,9 +159,11 @@ check_and_connect_expressvpn() {
 
 	# If not connected, connect to ExpressVPN
 	if [ "$status" != "Connected to" ]; then
+                echo "expressvpn connect:" 
 		expressvpn connect
 	else
 		# echo $status
+                echo "expressvpn status:" 
 		expressvpn status
 	fi
 }
