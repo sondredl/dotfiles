@@ -2,7 +2,7 @@ autocmd! bufwritepost ~/.vimrc source ~/.vimrc " auto run source ~/.vimrc on sav
 
 syntax on
 set nu relativenumber
-colorscheme murphy
+colorscheme darkblue
 set visualbell
 set belloff=all
 set noswapfile
@@ -19,8 +19,12 @@ set ignorecase
 set smartcase
 set incsearch
 set autowrite
+set autoread
 set complete+=kspell
 set completeopt=menuone,longest
+
+autocmd CursorHold,CursorHoldI * checktime
+" autocmd BufEnter * if getftime(expand('%')) > getftime(expand('%:p')) | echohl WarningMsg | echo "File reloaded." | echohl None | endif))))
 
 set cursorline
 set cursorcolumn
@@ -57,5 +61,8 @@ let g:netrw_liststyle=3         "tree view
 set omnifunc=suntaxcomplete#Complete
 
 
+inoremap ( ()<Esc>:let leavechar=")"<CR>i
+imap <C-j> <Esc>:exec "normal f" . leavechar<CR>a))
+inoremap { { <CR> }<Esc>O
 
 
