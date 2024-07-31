@@ -35,6 +35,7 @@ set autoindent
 set expandtab
 set shiftwidth=4
 set softtabstop=4
+set foldmethod=marker
 
 filetype plugin indent on
 filetype plugin on
@@ -45,6 +46,10 @@ set splitbelow splitright
 noremap <C-h> :vertical resize +3 <CR>
 noremap <C-y> :resize +3 <CR>
 noremap <C-n> <C-w>=
+
+" tab navigation
+noremap  <C-Tab> :tabnext<CR>       " navigate to next tab
+noremap  <C-S-Tab> :tabprevious<CR> " navigate to previous tab
 
 " FILE BROWSING:
 set path+=**                    "search into subwfolders & provide file-related tabcomplete
