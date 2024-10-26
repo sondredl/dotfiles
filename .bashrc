@@ -3,14 +3,14 @@
 # for examples
 
 # If not running interactively, don't do anything
-case $- in
-    *i*) ;;
-      *) return;;
-esac
+# case $- in
+#     *i*) ;;
+#       *) return;;
+# esac
 
 # don't put duplicate lines or lines starting with space in the history.
 # See bash(1) for more options
-HISTCONTROL=ignoreboth
+# HISTCONTROL=ignoreboth
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -148,11 +148,17 @@ alias gc="git commit"
 alias go="/c/Program\ Files/Go/bin/go.exe"
 alias ll="ls -all"
 alias vim="/usr/bin/vim.basic"
+alias godot="/opt/Godot_v4.3-stable_linux.x86_64"
+alias clang="/usr/bin/clang-17"
+alias clang-format='/usr/bin/clang-format-17'
+alias clang-tidy='/usr/bin/clang-tidy-17'
+# alias git="/home/sondre/Documents/GitHub/gitt/o/git"
 # alias vim="nvim"
-alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
+# alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
 
 # path exports
 export PATH="$PATH:$HOME/Documents/GitHub/alacritty/target/release"
+# export PATH="/opt/"
 
 check_and_connect_expressvpn() {
 	status=$(expressvpn status | grep -o "Connected to")
@@ -187,72 +193,23 @@ function check_and_start_cerebro
 	fi
 }
 
+git_configs
+{ 
+    git config --global --add --bool push.autoSetupRemote true
+    git config --global pull.rebaset true
+    git config --global merge.ff no
+    git config --global core.hooksPath ~/.git-hooks
+    git maintenance start --auto --global
+    git config --global rerere.enable true
+    git config --global rerere.autoUpdate true
+    git config --global column.ui auto
+    git config --global branch.sort -committerdate
+}
+
 check_and_start_redshift_gtk
 check_and_start_cerebro
 check_and_connect_expressvpn
-
-# if [ -n "$BASH_VERSION" -a -n "$PS1" ]; then
-#         # include .bashrc if it exists
-#             if [ -f "$HOME/.bashrc" ]; then
-#                     . "$HOME/.bashrc"
-#                         fi
-# fi
+git_configs
 
 
-# optionally:
-# switch to block cursor before executing a command
-# set keymap vi-insert
-# RETURN: "\e\n"
 
-#   copilot_what-the-shell () {
-#     TMPFILE=$(mktemp);
-#     trap 'rm -f $TMPFILE' EXIT;
-#     if C:/Users/sondr/AppData/Roaming/npm/node_modules/@githubnext/github-copilot-cli/cli.js what-the-shell "$@" --shellout $TMPFILE; then
-#       if [ -e "$TMPFILE" ]; then
-#         FIXED_CMD=$(cat $TMPFILE);
-#         history -s $(history 1 | cut -d' ' -f4-); history -s "$FIXED_CMD";
-#         eval "$FIXED_CMD"
-#       else
-#         echo "Apologies! Extracting command failed"
-#       fi
-#     else
-#       return 1
-#     fi
-#   };
-# alias '??'='copilot_what-the-shell';
-#
-#   copilot_git-assist () {
-#     TMPFILE=$(mktemp);
-#     trap 'rm -f $TMPFILE' EXIT;
-#     if C:/Users/sondr/AppData/Roaming/npm/node_modules/@githubnext/github-copilot-cli/cli.js git-assist "$@" --shellout $TMPFILE; then
-#       if [ -e "$TMPFILE" ]; then
-#         FIXED_CMD=$(cat $TMPFILE);
-#         history -s $(history 1 | cut -d' ' -f4-); history -s "$FIXED_CMD";
-#         eval "$FIXED_CMD"
-#       else
-#         echo "Apologies! Extracting command failed"
-#       fi
-#     else
-#       return 1
-#     fi
-#   };
-# alias 'git?'='copilot_git-assist';
-#
-#   copilot_gh-assist () {
-#     TMPFILE=$(mktemp);
-#     trap 'rm -f $TMPFILE' EXIT;
-#     if C:\Users\sondr\AppData\Roaming\npm\node_modules\@githubnext\github-copilot-cli\cli.js gh-assist "$@" --shellout $TMPFILE; then
-#       if [ -e "$TMPFILE" ]; then
-#         FIXED_CMD=$(cat $TMPFILE);
-#         history -s $(history 1 | cut -d' ' -f4-); history -s "$FIXED_CMD";
-#         eval "$FIXED_CMD"
-#       else
-#         echo "Apologies! Extracting command failed"
-#       fi
-#     else
-#       return 1
-#     fi
-#   };
-# alias 'gh?'='copilot_gh-assist';
-# alias 'wts'='copilot_what-the-shell';
-#. "$HOME/.cargo/env"
