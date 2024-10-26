@@ -235,3 +235,4 @@ check_and_start_cerebro
 check_and_connect_expressvpn
 remap_caps_to_ctrl_and_escape
 
+export EDITOR=vim
