@@ -29,19 +29,18 @@ else
 fi
 
 
-# files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(CMakeLists.txt)$')
-# 
-# if [ -n "$files_to_format" ]; then
-#     # Run clang-format only if there are relevant files
-#     echo "Formatting code with autopep8..."
-#     echo "$files_to_format" | xargs cmake-format -i 
-#     git add $files_to_format
-#     echo "Code formatted successfully."
-# else
-#     echo "No relevant files to format. Skipping clang-format."
-# fi
-# 
-# # exit $?
+ files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(CMakeLists.txt)$')
+ 
+ if [ -n "$files_to_format" ]; then
+     # Run clang-format only if there are relevant files
+     echo "Formatting code with autopep8..."
+     echo "$files_to_format" | xargs cmake-format -i 
+     git add $files_to_format
+     echo "Code formatted successfully."
+ else
+     echo "No relevant files to format. Skipping clang-format."
+ fi
 
-# exit $?
+
+ exit $?
 
