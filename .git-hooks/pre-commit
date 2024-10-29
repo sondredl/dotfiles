@@ -47,7 +47,7 @@ if [ "$autopep8_available" = true ]; then
     files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(py|gd)$')
     if [ -n "$files_to_format" ]; then
         echo "Formatting code with autopep8..."
-        echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive  -q
+        echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive 
         git add $files_to_format
         echo "Code formatted successfully."
     else
