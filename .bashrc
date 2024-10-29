@@ -241,7 +241,7 @@ git_configs
     git config --global --add --bool push.autoSetupRemote true
     git config --global pull.rebase true
     git config --global merge.ff no
-    git config --global core.hooksPath ~/.git-hooks
+    git config --global core.hooksPath ~/.git-hooks/hooks
     git maintenance start 
     git config --global rerere.enable true
     git config --global rerere.autoUpdate true
