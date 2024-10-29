@@ -1,7 +1,7 @@
 # .cmake-format.py
 
 # General settings
-line_width = 80                   # Maximum line width for wrapping
+line_width = 100                   # Maximum line width for wrapping
 tab_size = 4                       # Size of each indentation level
 use_tabchars = False               # Use spaces instead of tabs for indentation
 
