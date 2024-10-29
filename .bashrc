@@ -239,21 +239,24 @@ function remap_caps_to_ctrl_and_escape
 git_configs
 { 
     git config --global --add --bool push.autoSetupRemote true
-    git config --global pull.rebaset true
+    git config --global pull.rebase true
     git config --global merge.ff no
-    git config --global core.hooksPath ~/.git-hooks
-    git maintenance start --auto --global
+    git config --global core.hooksPath ~/.git-hooks/hooks
+    git maintenance start 
     git config --global rerere.enable true
     git config --global rerere.autoUpdate true
     git config --global column.ui auto
     git config --global branch.sort -committerdate
+    git config --global core.editor "vim"
 }
 
 check_and_start_redshift_gtk
 check_and_start_cerebro
 check_and_connect_expressvpn
+remap_caps_to_ctrl_and_escape
 git_configs
 
 source .cleanCodeStaged
 
+set EDITOR=vim
 

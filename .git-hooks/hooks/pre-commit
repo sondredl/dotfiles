@@ -29,6 +29,25 @@ else
     cmake_format_available=false
 fi
 
+# Set clang-format style file path
+clang_format_file="./.clang-format"
+if [ ! -f "$clang_format_file" ]; then
+    clang_format_file="$HOME/.git-hooks/config/.clang-format"
+fi
+
+# Set setup.cfg path for autopep8
+autopep8_config_file="./setup.cfg"
+if [ ! -f "$autopep8_config_file" ]; then
+    autopep8_config_file="$HOME/.git-hooks/config/setup.cfg"
+fi
+
+# Set cmake-format style file path
+cmake_format_file="./.cmake-format"
+if [ ! -f "$cmake_format_file" ]; then
+    cmake_format_file="$HOME/.git-hooks/config/.cmake-format"
+fi
+
+
 # Run clang-format on staged C++ files
 if [ "$clang_format_available" = true ]; then
     files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(c|h|cpp|hpp)$')
@@ -47,7 +66,7 @@ if [ "$autopep8_available" = true ]; then
     files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(py|gd)$')
     if [ -n "$files_to_format" ]; then
         echo "Formatting code with autopep8..."
-        echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive  -q
+        echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive 
         git add $files_to_format
         echo "Code formatted successfully."
     else
