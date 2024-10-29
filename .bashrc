@@ -247,6 +247,7 @@ git_configs
     git config --global rerere.autoUpdate true
     git config --global column.ui auto
     git config --global branch.sort -committerdate
+    git config --global core.editor "vim"
 }
 
 check_and_start_redshift_gtk
