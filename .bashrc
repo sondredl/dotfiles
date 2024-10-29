@@ -256,4 +256,5 @@ git_configs
 
 source .cleanCodeStaged
 
+set EDITOR=vim
 
