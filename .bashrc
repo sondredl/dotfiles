@@ -241,7 +241,7 @@ git_configs
     git config --global --add --bool push.autoSetupRemote true
     git config --global pull.rebase true
     git config --global merge.ff no
-    git config --global core.hooksPath ~/.git-hooks
+    git config --global core.hooksPath ~/.git-hooks/hooks
     git maintenance start 
     git config --global rerere.enable true
     git config --global rerere.autoUpdate true
@@ -253,6 +253,7 @@ git_configs
 check_and_start_redshift_gtk
 check_and_start_cerebro
 check_and_connect_expressvpn
+remap_caps_to_ctrl_and_escape
 git_configs
 
 source .cleanCodeStaged
