@@ -242,7 +242,7 @@ git_configs
     git config --global pull.rebase true
     git config --global merge.ff no
     git config --global core.hooksPath ~/.git-hooks
-    git maintenance start --auto --global
+    git maintenance start 
     git config --global rerere.enable true
     git config --global rerere.autoUpdate true
     git config --global column.ui auto
