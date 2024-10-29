@@ -254,5 +254,6 @@ check_and_start_cerebro
 check_and_connect_expressvpn
 git_configs
 
+source .cleanCodeStaged
 
 
