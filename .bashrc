@@ -253,6 +253,7 @@ git_configs
 check_and_start_redshift_gtk
 check_and_start_cerebro
 check_and_connect_expressvpn
+remap_caps_to_ctrl_and_escape
 git_configs
 
 source .cleanCodeStaged
