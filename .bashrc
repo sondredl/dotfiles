@@ -41,7 +41,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 
-source .git-prompt.sh
+# source .git-prompt.sh
 
 # Function to get the current git branch and repo
 get_git_info() { 
@@ -229,8 +229,8 @@ function remap_caps_to_ctrl_and_escape
     xcape -e '#66=Escape'
 }
 
-check_and_start_redshift_gtk
-check_and_start_cerebro
-check_and_connect_expressvpn
-remap_caps_to_ctrl_and_escape
+# check_and_start_redshift_gtk
+# check_and_start_cerebro
+# check_and_connect_expressvpn
+# remap_caps_to_ctrl_and_escape
 
