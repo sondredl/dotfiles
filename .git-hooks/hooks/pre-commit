@@ -47,6 +47,19 @@ if [ ! -f "$cmake_format_file" ]; then
     cmake_format_file="$HOME/.git-hooks/config/.cmake-format"
 fi
 
+# Find all staged files
+files=$(git diff --cached --name-only --diff-filter=ACM)
+
+# Loop through each file and remove trailing whitespace
+for file in $files; do
+    # Skip if the file is binary
+    if ! git diff --cached "$file" | grep -q '^Binary'; then
+        # Remove trailing whitespace in the file
+        sed -i '' -e 's/[[:space:]]*$//' "$file"
+        # Stage the changes after modification
+        git add "$file"
+    fi
+done
 
 # Run clang-format on staged C++ files
 if [ "$clang_format_available" = true ]; then
@@ -66,7 +79,7 @@ if [ "$autopep8_available" = true ]; then
     files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(py|gd)$')
     if [ -n "$files_to_format" ]; then
         echo "Formatting code with autopep8..."
-        echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive 
+        echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive
         git add $files_to_format
         echo "Code formatted successfully."
     else
@@ -79,7 +92,7 @@ if [ "$cmake_format_available" = true ]; then
     files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E 'CMakeLists\.txt$')
     if [ -n "$files_to_format" ]; then
         echo "Formatting code with cmake-format..."
-        echo "$files_to_format" | xargs cmake-format -i 
+        echo "$files_to_format" | xargs cmake-format -i
         git add $files_to_format
         echo "Code formatted successfully."
     else
