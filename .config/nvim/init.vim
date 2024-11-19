@@ -41,7 +41,7 @@ set foldmethod=marker
 "filetype plugin indent on
 "filetype plugin on
 
-noremap y "y
+" noremap y "y
 
 "set splitbelow splitright
 "noremap <C-h> :vertical resize +3 <CR>
@@ -73,4 +73,16 @@ let g:netrw_liststyle=3         "tree view
 
 "highlight Normal guibg=none
 "highlight NonText guibg=none
+
+"nnoremap <C-Tab> :tabnext<CR>
+"nnoremap <C-S-Tab> :tabprevious<CR>
+
+nnoremap <C-n> :tabnext<CR>
+nnoremap <C-p> :tabprevious<CR>
+
+" Set the background and foreground colors for the popup menu
+highlight Pmenu ctermfg=white ctermbg=darkgray
+highlight PmenuSel ctermfg=black ctermbg=yellow
+highlight PmenuSbar ctermbg=darkgray
+highlight PmenuThumb ctermbg=yellow
 

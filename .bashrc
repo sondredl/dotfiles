@@ -44,13 +44,13 @@ fi
 source .git-prompt.sh
 
 # Function to get the current git branch and repo
-get_git_info() { 
+get_git_info() {
 
     local repo_name branch_name untracked_changes
 
     # Get the repository name
     repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null)
-                
+
     # Get the current branch name
     branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
 
@@ -59,7 +59,7 @@ get_git_info() {
         echo "${repo_name} @ ${branch_name}"
     fi
 }
-get_git_status() { 
+get_git_status() {
 
     local staged unstaged untracked
 
@@ -185,7 +185,7 @@ alias clang="/usr/bin/clang-17"
 alias clang-format='/usr/bin/clang-format-17'
 alias clang-tidy='/usr/bin/clang-tidy-17'
 # alias git="/home/sondre/Documents/GitHub/gitt/o/git"
-# alias vim="nvim"
+alias vim="nvim"
 # alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
 
 # path exports
@@ -197,11 +197,11 @@ check_and_connect_expressvpn() {
 
 	# If not connected, connect to ExpressVPN
 	if [ "$status" != "Connected to" ]; then
-                echo "expressvpn connect:" 
+                echo "expressvpn connect:"
 		expressvpn connect
 	else
 		# echo $status
-                echo "expressvpn status:" 
+                echo "expressvpn status:"
 		expressvpn status
 	fi
 }
@@ -228,7 +228,7 @@ function check_and_start_cerebro
 }
 
 function remap_caps_to_ctrl_and_escape
-{ 
+{
     # remap caps to ctrl+escape and escape to caps
     xmodmap -e 'keycode 9 = Caps_Lock'
     setxkbmap -option 'caps:swapescape' -option 'caps:ctrl_modifier'
@@ -237,12 +237,12 @@ function remap_caps_to_ctrl_and_escape
 }
 
 git_configs
-{ 
+{
     git config --global --add --bool push.autoSetupRemote true
     git config --global pull.rebase true
     git config --global merge.ff no
     git config --global core.hooksPath ~/.git-hooks/hooks
-    git maintenance start 
+    git maintenance start
     git config --global rerere.enable true
     git config --global rerere.autoUpdate true
     git config --global column.ui auto
