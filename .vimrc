@@ -72,3 +72,7 @@ imap <C-j> <Esc>:exec "normal f" . leavechar<CR>a))
 inoremap { { <CR> }<Esc>O
 
 
+highlight Normal ctermbg=none
+highlight NonText ctermbg=none
+
+
