@@ -47,6 +47,7 @@ cleanCode()
 	analyseChanges
 	formatChanges
 }
+
 cleanCodeProject()
 {
 	rm -rf CODE_ANALYSIS

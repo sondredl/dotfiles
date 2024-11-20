@@ -47,20 +47,31 @@ if [ ! -f "$cmake_format_file" ]; then
     cmake_format_file="$HOME/.git-hooks/config/.cmake-format"
 fi
 
-# Find all staged files
-files=$(git diff --cached --name-only --diff-filter=ACM)
+cleanWhitespaces(){
 
-# Loop through each file and remove trailing whitespace
-for file in $files; do
-    # Skip if the file is binary
-    if ! git diff --cached "$file" | grep -q '^Binary'; then
-        # Remove trailing whitespace in the file
-        sed -i 's/[[:space:]]*$//' "$file"
+    changedFiles=0
+    # Find all staged files
+    files=$(git diff --cached --name-only --diff-filter=ACM)
+
+    # Loop through each file and remove trailing whitespace
+    for file in $files; do
+        # Skip if the file is binary
+        if ! git diff --cached "$file" | grep -q '^Binary'; then
+            # Remove trailing whitespace in the file
+            sed -i 's/[[:space:]]*$//' "$file"
+            echo "Deleted trailing whitespaces successfully."
+            # Stage the changes after modification
+            git add "$file"
+            changedFiles=$(0)
+        fi
+    done
+
+    if changedFiles; then
         echo "Deleted trailing whitespaces successfully."
-        # Stage the changes after modification
-        git add "$file"
+        git add "$file"  
+        changedFiles=$(0)
     fi
-done
+}
 
 
 
