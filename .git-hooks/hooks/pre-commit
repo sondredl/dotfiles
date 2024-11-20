@@ -62,14 +62,15 @@ cleanWhitespaces(){
             echo "Deleted trailing whitespaces successfully."
             # Stage the changes after modification
             git add "$file"
-            changedFiles=$(0)
+            changedFiles=1
         fi
     done
 
-    if changedFiles; then
+    # Provide feedback if any files were changed
+    if [ $changedFiles -eq 1 ]; then
         echo "Deleted trailing whitespaces successfully."
-        git add "$file"  
-        changedFiles=$(0)
+    else  
+        echo "No trailing whitespaces were found."
     fi
 }
 
