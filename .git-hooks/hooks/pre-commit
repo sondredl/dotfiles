@@ -69,10 +69,11 @@ cleanWhitespaces(){
     # Provide feedback if any files were changed
     if [ $changedFiles -eq 1 ]; then
         echo "Deleted trailing whitespaces successfully."
-    else  
+    else
         echo "No trailing whitespaces were found."
     fi
 }
+cleanWhitespaces
 
 
 
