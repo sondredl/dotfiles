@@ -77,43 +77,49 @@ cleanWhitespaces
 
 
 
-# Run clang-format on staged C++ files
-if [ "$clang_format_available" = true ]; then
-    files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(c|h|cpp|hpp)$')
-    if [ -n "$files_to_format" ]; then
-        echo "Formatting code with clang-format..."
-        echo "$files_to_format" | xargs clang-format -i --style=file
-        git add $files_to_format
-        echo "Code formatted successfully."
-    else
-        echo "No relevant C++ files to format. Skipping clang-format."
+clangFormatStaged(){
+    # Run clang-format on staged C++ files
+    if [ "$clang_format_available" = true ]; then
+        files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(c|h|cpp|hpp)$')
+        if [ -n "$files_to_format" ]; then
+            echo "Formatting code with clang-format..."
+            echo "$files_to_format" | xargs clang-format -i --style=file
+            git add $files_to_format
+            echo "Code formatted successfully."
+        else
+            echo "No relevant C++ files to format. Skipping clang-format."
+        fi
     fi
-fi
 
-# Run autopep8 on staged Python and Godot files
-if [ "$autopep8_available" = true ]; then
-    files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(py|gd)$')
-    if [ -n "$files_to_format" ]; then
-        echo "Formatting code with autopep8..."
-        echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive
-        git add $files_to_format
-        echo "Code formatted successfully."
-    else
-        echo "No relevant Python or Godot files to format. Skipping autopep8."
+    # Run autopep8 on staged Python and Godot files
+    if [ "$autopep8_available" = true ]; then
+        files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(py|gd)$')
+        if [ -n "$files_to_format" ]; then
+            echo "Formatting code with autopep8..."
+            echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive
+            git add $files_to_format
+            echo "Code formatted successfully."
+        else
+            echo "No relevant Python or Godot files to format. Skipping autopep8."
+        fi
     fi
-fi
+}
+clangFormatStaged
 
-# Run cmake-format on staged CMakeLists.txt files
-if [ "$cmake_format_available" = true ]; then
-    files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E 'CMakeLists\.txt$')
-    if [ -n "$files_to_format" ]; then
-        echo "Formatting code with cmake-format..."
-        echo "$files_to_format" | xargs cmake-format -i
-        git add $files_to_format
-        echo "Code formatted successfully."
-    else
-        echo "No relevant CMake files to format. Skipping cmake-format."
+cmakeFormatStaged(){
+    # Run cmake-format on staged CMakeLists.txt files
+    if [ "$cmake_format_available" = true ]; then
+        files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E 'CMakeLists\.txt$')
+        if [ -n "$files_to_format" ]; then
+            echo "Formatting code with cmake-format..."
+            echo "$files_to_format" | xargs cmake-format -i
+            git add $files_to_format
+            echo "Code formatted successfully."
+        else
+            echo "No relevant CMake files to format. Skipping cmake-format."
+        fi
     fi
-fi
+}
+cmakeFormatStaged
 
 exit 0
