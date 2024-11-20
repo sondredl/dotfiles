@@ -59,7 +59,7 @@ cleanWhitespaces(){
         if ! git diff --cached "$file" | grep -q '^Binary'; then
             # Remove trailing whitespace in the file
             sed -i 's/[[:space:]]*$//' "$file"
-            echo "Deleted trailing whitespaces successfully."
+            # echo "Deleted trailing whitespaces successfully."
             # Stage the changes after modification
             git add "$file"
             changedFiles=1
