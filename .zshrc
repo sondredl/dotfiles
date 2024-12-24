@@ -236,3 +236,4 @@ function remap_caps_to_ctrl_and_escape
 
 # export path='/opt/homebrew/opt/bin'
 export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
