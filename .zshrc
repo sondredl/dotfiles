@@ -180,7 +180,8 @@ alias go="/c/Program\ Files/Go/bin/go.exe"
 alias ll="ls -all"
 #alias vim="/usr/bin/vim.basic"
 alias vim="nvim"
-alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
+# alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
+alias python ="python3"
 
 # path exports
 export PATH="$PATH:$HOME/Documents/GitHub/alacritty/target/release"
@@ -238,3 +239,4 @@ function remap_caps_to_ctrl_and_escape
 export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
+
