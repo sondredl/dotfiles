@@ -75,4 +75,12 @@ inoremap { { <CR> }<Esc>O
 highlight Normal ctermbg=none
 highlight NonText ctermbg=none
 
+nnoremap <C-n> :tabnext<CR>
+nnoremap <C-p> :tabprevious<CR>
+
+" Set the background and foreground colors for the popup menu
+highlight Pmenu ctermfg=white ctermbg=darkgray
+highlight PmenuSel ctermfg=black ctermbg=yellow
+highlight PmenuSbar ctermbg=darkgray
+highlight PmenuThumb ctermbg=yellow
 
