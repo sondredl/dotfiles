@@ -182,8 +182,10 @@ alias ll="ls -all"
 alias vim="/usr/bin/vim.basic"
 alias godot="/opt/Godot_v4.3-stable_linux.x86_64"
 alias clang="/usr/bin/clang-17"
-alias clang-format='/usr/bin/clang-format-17'
-alias clang-tidy='/usr/bin/clang-tidy-17'
+# alias clang-format='/usr/bin/clang-format-17'
+# alias clang-tidy='/usr/bin/clang-tidy-17'
+alias clang-format='Documents/llvmBinary/clang-format'
+alias clang-tidy='Documents/llvmBinary/clang-tidy'
 # alias git="/home/sondre/Documents/GitHub/gitt/o/git"
 alias vim="nvim"
 # alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
