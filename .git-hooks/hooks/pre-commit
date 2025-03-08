@@ -1,0 +1,125 @@
+#!/bin/sh
+
+# Function to check if a command exists
+command_exists() {
+    command -v "$1" >/dev/null 2>&1
+}
+
+# Check for clang-format
+if command_exists clang-format; then
+    clang_format_available=true
+else
+    echo "Warning: clang-format is not available. Skipping C++ formatting."
+    clang_format_available=false
+fi
+
+# Check for autopep8
+if command_exists autopep8; then
+    autopep8_available=true
+else
+    echo "Warning: autopep8 is not available. Skipping Python formatting."
+    autopep8_available=false
+fi
+
+# Check for cmake-format
+if command_exists cmake-format; then
+    cmake_format_available=true
+else
+    echo "Warning: cmake-format is not available. Skipping CMake formatting."
+    cmake_format_available=false
+fi
+
+# Set clang-format style file path
+clang_format_file="./.clang-format"
+if [ ! -f "$clang_format_file" ]; then
+    clang_format_file="$HOME/.git-hooks/config/.clang-format"
+fi
+
+# Set setup.cfg path for autopep8
+autopep8_config_file="./setup.cfg"
+if [ ! -f "$autopep8_config_file" ]; then
+    autopep8_config_file="$HOME/.git-hooks/config/setup.cfg"
+fi
+
+# Set cmake-format style file path
+cmake_format_file="./.cmake-format"
+if [ ! -f "$cmake_format_file" ]; then
+    cmake_format_file="$HOME/.git-hooks/config/.cmake-format"
+fi
+
+cleanWhitespaces(){
+
+    changedFiles=0
+    # Find all staged files
+    files=$(git diff --cached --name-only --diff-filter=ACM)
+
+    # Loop through each file and remove trailing whitespace
+    for file in $files; do
+        # Skip if the file is binary
+        if ! git diff --cached "$file" | grep -q '^Binary'; then
+            # Remove trailing whitespace in the file
+            sed -i 's/[[:space:]]*$//' "$file"
+            # echo "Deleted trailing whitespaces successfully."
+            # Stage the changes after modification
+            git add "$file"
+            changedFiles=1
+        fi
+    done
+
+    # Provide feedback if any files were changed
+    if [ $changedFiles -eq 1 ]; then
+        echo "Deleted trailing whitespaces successfully."
+    else
+        echo "No trailing whitespaces were found."
+    fi
+}
+cleanWhitespaces
+
+
+
+clangFormatStaged(){
+    # Run clang-format on staged C++ files
+    if [ "$clang_format_available" = true ]; then
+        files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(c|h|cpp|hpp)$')
+        if [ -n "$files_to_format" ]; then
+            echo "Formatting code with clang-format..."
+            echo "$files_to_format" | xargs clang-format -i --style=file
+            git add $files_to_format
+            echo "Code formatted successfully."
+        else
+            echo "No relevant C++ files to format. Skipping clang-format."
+        fi
+    fi
+
+    # Run autopep8 on staged Python and Godot files
+    if [ "$autopep8_available" = true ]; then
+        files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E '\.(py|gd)$')
+        if [ -n "$files_to_format" ]; then
+            echo "Formatting code with autopep8..."
+            echo "$files_to_format" | xargs autopep8 --in-place --aggressive --aggressive
+            git add $files_to_format
+            echo "Code formatted successfully."
+        else
+            echo "No relevant Python or Godot files to format. Skipping autopep8."
+        fi
+    fi
+}
+clangFormatStaged
+
+cmakeFormatStaged(){
+    # Run cmake-format on staged CMakeLists.txt files
+    if [ "$cmake_format_available" = true ]; then
+        files_to_format=$(git diff --name-only --cached --diff-filter=ACMR | grep -E 'CMakeLists\.txt$')
+        if [ -n "$files_to_format" ]; then
+            echo "Formatting code with cmake-format..."
+            echo "$files_to_format" | xargs cmake-format -i
+            git add $files_to_format
+            echo "Code formatted successfully."
+        else
+            echo "No relevant CMake files to format. Skipping cmake-format."
+        fi
+    fi
+}
+cmakeFormatStaged
+
+exit 0

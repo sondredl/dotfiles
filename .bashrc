@@ -44,13 +44,13 @@ fi
 # source .git-prompt.sh
 
 # Function to get the current git branch and repo
-get_git_info() { 
+get_git_info() {
 
     local repo_name branch_name untracked_changes
 
     # Get the repository name
     repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null)
-                
+
     # Get the current branch name
     branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
 
@@ -59,38 +59,38 @@ get_git_info() {
         echo "${repo_name} @ ${branch_name}"
     fi
 }
-# get_git_status() { 
+get_git_status() {
 
-#     local staged unstaged untracked
+     local staged unstaged untracked
 
-#     # get number of staged
-#     staged_prompt=""
-#     staged=$(git diff --cached --name-only 2>/dev/null | wc -l)
-#     if [[ $staged -ne 0 ]]; then
-#         staged_prompt="staged: ${staged}"
-#     fi
+     # get number of staged
+     staged_prompt=""
+     staged=$(git diff --cached --name-only 2>/dev/null | wc -l)
+     if [[ $staged -ne 0 ]]; then
+         staged_prompt="staged: ${staged}"
+     fi
 
-#     # get number of untracked
-#     unstaged_prompt=""
-#     unstaged=$(git status --porcelain 2>/dev/null | grep '^ ' | wc -l)
-#     if [[ $unstaged -ne 0 ]]; then
-#         unstaged_prompt="unstaged: ${unstaged}"
-#     fi
+     # get number of untracked
+     unstaged_prompt=""
+     unstaged=$(git status --porcelain 2>/dev/null | grep '^ ' | wc -l)
+     if [[ $unstaged -ne 0 ]]; then
+         unstaged_prompt="unstaged: ${unstaged}"
+     fi
 
-#     # get number of new
-#     untracked_prompt=""
-#     untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l)
-#     if [[ $untracked -ne 0 ]]; then
-#         untracked_prompt="untracked: ${untracked}"
-#     fi
+     # get number of new
+     untracked_prompt=""
+     untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l)
+     if [[ $untracked -ne 0 ]]; then
+         untracked_prompt="untracked: ${untracked}"
+     fi
 
-#     # if git repo, set ps1 variable
-#     # if [[ -n $staged || -n $unstaged || -n $untracked ]]; then
-#     if [[ $staged -ne 0 || $unstaged -ne 0 || $untracked -ne 0 ]]; then
-#         # echo "[- \[\033[0;32m\] ${staged_prompt}\[\033[0m\] ${unstaged_prompt} ${untracked_prompt}]"
-#         echo "- ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
-#     fi
-# }
+     # if git repo, set ps1 variable
+     # if [[ -n $staged || -n $unstaged || -n $untracked ]]; then
+     if [[ $staged -ne 0 || $unstaged -ne 0 || $untracked -ne 0 ]]; then
+         # echo "[- \[\033[0;32m\] ${staged_prompt}\[\033[0m\] ${unstaged_prompt} ${untracked_prompt}]"
+         echo "- ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
+     fi
+ }
 
 # Set the prompt
 # export PS1='[\u@\h \W $(get_git_info)]\$ '
@@ -136,6 +136,7 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias kpm='./kpm'
+alias godot='/bin/Godot_v4.3-stable_linux.x86_64'
 
 # Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -181,20 +182,29 @@ alias ll="ls -all"
 #alias vim="/usr/bin/vim.basic"
 # alias vim="nvim"
 alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
+# alias vim="/usr/bin/vim.basic"
+# alias godot="/opt/Godot_v4.3-stable_linux.x86_64"
+# alias clang="/usr/bin/clang-17"
+# alias clang-format='/usr/bin/clang-format-17'
+# alias clang-tidy='/usr/bin/clang-tidy-17'
+# # alias git="/home/sondre/Documents/GitHub/gitt/o/git"
+# alias vim="nvim"
+# # alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
 
 # path exports
 export PATH="$PATH:$HOME/Documents/GitHub/alacritty/target/release"
+# export PATH="/opt/"
 
 check_and_connect_expressvpn() {
 	status=$(expressvpn status | grep -o "Connected to")
 
 	# If not connected, connect to ExpressVPN
 	if [ "$status" != "Connected to" ]; then
-                echo "expressvpn connect:" 
+                echo "expressvpn connect:"
 		expressvpn connect
 	else
 		# echo $status
-                echo "expressvpn status:" 
+                echo "expressvpn status:"
 		expressvpn status
 	fi
 }
@@ -221,7 +231,7 @@ function check_and_start_cerebro
 }
 
 function remap_caps_to_ctrl_and_escape
-{ 
+{
     # remap caps to ctrl+escape and escape to caps
     xmodmap -e 'keycode 9 = Caps_Lock'
     setxkbmap -option 'caps:swapescape' -option 'caps:ctrl_modifier'
@@ -229,10 +239,29 @@ function remap_caps_to_ctrl_and_escape
     xcape -e '#66=Escape'
 }
 
+git_configs
+{
+    git config --global --add --bool push.autoSetupRemote true
+    git config --global pull.rebase true
+    git config --global merge.ff no
+    git config --global core.hooksPath ~/.git-hooks/hooks
+    git maintenance start
+    git config --global rerere.enable true
+    git config --global rerere.autoUpdate true
+    git config --global column.ui auto
+    git config --global branch.sort -committerdate
+    git config --global core.editor "vim"
+}
+
 # check_and_start_redshift_gtk
 # check_and_start_cerebro
 # check_and_connect_expressvpn
 # remap_caps_to_ctrl_and_escape
+git_configs
+
+source .cleanCodeStaged
+
+set EDITOR=vim
 
 # export path='/opt/homebrew/opt/bin'
 export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
