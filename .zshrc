@@ -277,4 +277,5 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 if [[ -z "$TMUX" ]]; then
     exec tmux
 fi
+export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 
