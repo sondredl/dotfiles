@@ -46,96 +46,80 @@ fi
 # source .git-prompt.sh
 
 # Function to get the current git branch and repo
+# get_git_info() { 
+# 
+#     local repo_name branch_name untracked_changes
+# 
+#     # Get the repository name
+#     repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null)
+#                 
+#     # Get the current branch name
+#     branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
+# 
+#     # If in a git repo, set the PS1 variable
+#     if [[ -n $repo_name && -n $branch_name ]]; then
+#         echo "${repo_name} @ ${branch_name}"
+#     fi
+# }
 get_git_info() { 
+    # Define colors
+    REPO_COLOR="%F{cyan}"     # Cyan for repo name
+    BRANCH_COLOR="%F{magenta}" # Magenta for branch name
+    RESET="%f"                 # Reset color
 
-    local repo_name branch_name untracked_changes
-
-    # Get the repository name
+    # Get repository name
     repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null)
-                
-    # Get the current branch name
+
+    # Get current branch name
     branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
 
-    # If in a git repo, set the PS1 variable
+    # If inside a git repository, display colored repo and branch info
     if [[ -n $repo_name && -n $branch_name ]]; then
-        echo "${repo_name} @ ${branch_name}"
+        echo "${REPO_COLOR}${repo_name}${RESET} @ ${BRANCH_COLOR}${branch_name}${RESET}"
     fi
 }
 
 get_git_status() { 
-
-#     local staged unstaged untracked
-
-     # get number of staged
-     staged_prompt=""
-     staged=$(git diff --cached --name-only 2>/dev/null | wc -l)
-     if [[ $staged -ne 0 ]]; then
-         staged_prompt="staged: ${staged}"
-     fi
-
-     # get number of untracked
-     unstaged_prompt=""
-     unstaged=$(git status --porcelain 2>/dev/null | grep '^ ' | wc -l)
-     if [[ $unstaged -ne 0 ]]; then
-         unstaged_prompt="unstaged: ${unstaged}"
-     fi
-
-     # get number of new
-     untracked_prompt=""
-     untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l)
-     if [[ $untracked -ne 0 ]]; then
-         untracked_prompt="untracked: ${untracked}"
-     fi
-
-     # if git repo, set ps1 variable
-     # if [[ -n $staged || -n $unstaged || -n $untracked ]]; then
-     if [[ $staged -ne 0 || $unstaged -ne 0 || $untracked -ne 0 ]]; then
-         # echo "[- \[\033[0;32m\] ${staged_prompt}\[\033[0m\] ${unstaged_prompt} ${untracked_prompt}]"
-         echo "- ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
-     fi
- }
-
-
-get_git_status() { 
-    # Check if inside a Git repo
     git rev-parse --is-inside-work-tree &>/dev/null || return
 
-    # Get repo name (last folder in repo path)
+    # Repo name (last folder in repo path)
     repo_name=$(basename "$(git rev-parse --show-toplevel)")
 
-    # Get current branch name
+    # Branch name
     branch_name=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
 
-    # Initialize prompt parts
+    # Color definitions
+    RED="%F{red}"
+    YELLOW="%F{yellow}"
+    GREEN="%F{green}"
+    BLUE="%F{blue}"
+    RESET="%f"  # Reset color
+
     staged_prompt=""
     unstaged_prompt=""
     untracked_prompt=""
 
-    # Get number of staged changes
-    staged=$(git diff --cached --name-only 2>/dev/null | wc -l)
-    if [[ $staged -ne 0 ]]; then
-        staged_prompt="staged: ${staged}"
-    fi
+    # Get number of changes
+    staged=$(git diff --cached --name-only 2>/dev/null | wc -l | xargs)
+    unstaged=$(git diff --name-only | wc -l | xargs)
+    untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l | xargs)
 
-    # Get number of unstaged changes
-    unstaged=$(git status --porcelain 2>/dev/null | grep '^ ' | wc -l)
-    if [[ $unstaged -ne 0 ]]; then
-        unstaged_prompt="unstaged: ${unstaged}"
-    fi
+    # Build status string
+    # [[ $staged -ne 0 ]] && staged_prompt="${GREEN}● ${staged}${RESET}"
+    # [[ $unstaged -ne 0 ]] && unstaged_prompt="${YELLOW}● ${unstaged}${RESET}"
+    # [[ $untracked -ne 0 ]] && untracked_prompt="${RED}● ${untracked}${RESET}"
+    [[ $staged -ne 0 ]] && staged_prompt="${GREEN}● ${staged}${RESET}"
+    [[ $unstaged -ne 0 ]] && unstaged_prompt="${YELLOW}● ${unstaged}${RESET}"
+    [[ $untracked -ne 0 ]] && untracked_prompt="${RED}● ${untracked}${RESET}"
 
-    # Get number of untracked files
-    untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l)
-    if [[ $untracked -ne 0 ]]; then
-        untracked_prompt="untracked: ${untracked}"
-    fi
-
-    # Assemble and return the prompt
-    echo "repo: ${repo_name} branch: ${branch_name} - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
+    # Final output
+    echo "%F{magenta}${branch_name}%F{cyan}%f - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
 }
 
 # Set the prompt
- export PS1="
- - \$(get_git_info) : \$(pwd)
+ #- \$(get_git_info) : 
+ export PS1=" 
+ - %F{yellow}\$(pwd)
  - \$(get_git_status)
  $ "
 # export PS1='%n@%m %1~ %# '
