@@ -256,12 +256,12 @@ git_configs
 # check_and_start_redshift_gtk
 # check_and_start_cerebro
 # check_and_connect_expressvpn
-# remap_caps_to_ctrl_and_escape
-git_configs
+ remap_caps_to_ctrl_and_escape
+# git_configs
 
 source .cleanCodeStaged
 
 set EDITOR=vim
 
 # export path='/opt/homebrew/opt/bin'
-export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
+# export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
