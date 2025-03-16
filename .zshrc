@@ -3,6 +3,12 @@
 # for examples
 
 setopt PROMPT_SUBST
+# Enable completion system
+autoload -Uz compinit
+compinit
+
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
 
 case $- in              # If not running interactively, don't do anything
     *i*) ;;
