@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+setopt PROMPT_SUBST
+
 case $- in              # If not running interactively, don't do anything
     *i*) ;;
       *) return;;
@@ -59,50 +61,91 @@ get_git_info() {
         echo "${repo_name} @ ${branch_name}"
     fi
 }
-# get_git_status() { 
+
+get_git_status() { 
 
 #     local staged unstaged untracked
 
-#     # get number of staged
-#     staged_prompt=""
-#     staged=$(git diff --cached --name-only 2>/dev/null | wc -l)
-#     if [[ $staged -ne 0 ]]; then
-#         staged_prompt="staged: ${staged}"
-#     fi
+     # get number of staged
+     staged_prompt=""
+     staged=$(git diff --cached --name-only 2>/dev/null | wc -l)
+     if [[ $staged -ne 0 ]]; then
+         staged_prompt="staged: ${staged}"
+     fi
 
-#     # get number of untracked
-#     unstaged_prompt=""
-#     unstaged=$(git status --porcelain 2>/dev/null | grep '^ ' | wc -l)
-#     if [[ $unstaged -ne 0 ]]; then
-#         unstaged_prompt="unstaged: ${unstaged}"
-#     fi
+     # get number of untracked
+     unstaged_prompt=""
+     unstaged=$(git status --porcelain 2>/dev/null | grep '^ ' | wc -l)
+     if [[ $unstaged -ne 0 ]]; then
+         unstaged_prompt="unstaged: ${unstaged}"
+     fi
 
-#     # get number of new
-#     untracked_prompt=""
-#     untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l)
-#     if [[ $untracked -ne 0 ]]; then
-#         untracked_prompt="untracked: ${untracked}"
-#     fi
+     # get number of new
+     untracked_prompt=""
+     untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l)
+     if [[ $untracked -ne 0 ]]; then
+         untracked_prompt="untracked: ${untracked}"
+     fi
 
-#     # if git repo, set ps1 variable
-#     # if [[ -n $staged || -n $unstaged || -n $untracked ]]; then
-#     if [[ $staged -ne 0 || $unstaged -ne 0 || $untracked -ne 0 ]]; then
-#         # echo "[- \[\033[0;32m\] ${staged_prompt}\[\033[0m\] ${unstaged_prompt} ${untracked_prompt}]"
-#         echo "- ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
-#     fi
-# }
+     # if git repo, set ps1 variable
+     # if [[ -n $staged || -n $unstaged || -n $untracked ]]; then
+     if [[ $staged -ne 0 || $unstaged -ne 0 || $untracked -ne 0 ]]; then
+         # echo "[- \[\033[0;32m\] ${staged_prompt}\[\033[0m\] ${unstaged_prompt} ${untracked_prompt}]"
+         echo "- ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
+     fi
+ }
+
+
+get_git_status() { 
+    # Check if inside a Git repo
+    git rev-parse --is-inside-work-tree &>/dev/null || return
+
+    # Get repo name (last folder in repo path)
+    repo_name=$(basename "$(git rev-parse --show-toplevel)")
+
+    # Get current branch name
+    branch_name=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
+
+    # Initialize prompt parts
+    staged_prompt=""
+    unstaged_prompt=""
+    untracked_prompt=""
+
+    # Get number of staged changes
+    staged=$(git diff --cached --name-only 2>/dev/null | wc -l)
+    if [[ $staged -ne 0 ]]; then
+        staged_prompt="staged: ${staged}"
+    fi
+
+    # Get number of unstaged changes
+    unstaged=$(git status --porcelain 2>/dev/null | grep '^ ' | wc -l)
+    if [[ $unstaged -ne 0 ]]; then
+        unstaged_prompt="unstaged: ${unstaged}"
+    fi
+
+    # Get number of untracked files
+    untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l)
+    if [[ $untracked -ne 0 ]]; then
+        untracked_prompt="untracked: ${untracked}"
+    fi
+
+    # Assemble and return the prompt
+    echo "repo:${repo_name} branch:${branch_name} - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
+}
 
 # Set the prompt
-# export PS1='[\u@\h \W $(get_git_info)]\$ '
+ export PS1="
+ \$(get_git_info) : \$(pwd)
+ \$(get_git_status)
+ $ "
+# export PS1='%n@%m %1~ %# '
 
 # if [ "$color_prompt" = yes ]; then
-#      # ${debian_chroot:+($debian_chroot)} \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s")
-#      # \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s") $(get_git_info)
-#      PS1='
-# \033[01;34m\]\w\[\033[00m\] $(get_git_info) $(get_git_status)
-#      $ '
+#       ${debian_chroot:+($debian_chroot)} \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s")
+#       \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s") $(get_git_info)
+#       PS1='\033[01;34m\]\w\[\033[00m\] $(get_git_info) $(get_git_status) $ '
 # else
-#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#      PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 # fi
 # PS0='\[\e[2 q\]'
 # unset color_prompt force_color_prompt
