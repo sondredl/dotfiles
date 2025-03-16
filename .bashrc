@@ -265,3 +265,4 @@ set EDITOR=vim
 
 # export path='/opt/homebrew/opt/bin'
 export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
+alias code='/Applications/Visual\ Studio\ Code.app/'
