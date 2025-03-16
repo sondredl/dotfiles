@@ -116,18 +116,18 @@ get_git_status() {
     # [[ $untracked -ne 0 ]] && untracked_prompt="${RED}● ${untracked}${RESET}"
     [[ $staged -ne 0 ]] && staged_prompt="${GREEN}● ${staged}${RESET}"
     [[ $unstaged -ne 0 ]] && unstaged_prompt="${YELLOW}● ${unstaged}${RESET}"
-    [[ $untracked -ne 0 ]] && untracked_prompt="${RED}● ${untracked}${RESET}"
+    [[ $untracked -ne 0 ]] && untracked_prompt="${RED}untracked: ${untracked}${RESET}"
 
     # Final output
-    echo "%F{magenta}${branch_name}%F{cyan}%f - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
+    echo "%F{magenta}${branch_name}%F{cyan} - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
 }
 
 # Set the prompt
  #- \$(get_git_info) : 
  export PS1=" 
- - %F{yellow}\$(pwd)
- - \$(get_git_status)
- $ "
+ %F{green}- %F{yellow}\$(pwd)
+ %F{green}- \$(get_git_status)
+ %F{green}- %F{cyan}$%F{white} "
 # export PS1='%n@%m %1~ %# '
 
 # if [ "$color_prompt" = yes ]; then
