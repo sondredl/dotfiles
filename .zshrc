@@ -2,6 +2,8 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
+setopt PROMPT_SUBST
+
 case $- in              # If not running interactively, don't do anything
     *i*) ;;
       *) return;;
@@ -44,65 +46,90 @@ fi
 # source .git-prompt.sh
 
 # Function to get the current git branch and repo
-get_git_info() {
+# get_git_info() { 
+# 
+#     local repo_name branch_name untracked_changes
+# 
+#     # Get the repository name
+#     repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null)
+#                 
+#     # Get the current branch name
+#     branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
+# 
+#     # If in a git repo, set the PS1 variable
+#     if [[ -n $repo_name && -n $branch_name ]]; then
+#         echo "${repo_name} @ ${branch_name}"
+#     fi
+# }
+get_git_info() { 
+    # Define colors
+    REPO_COLOR="%F{cyan}"     # Cyan for repo name
+    BRANCH_COLOR="%F{magenta}" # Magenta for branch name
+    RESET="%f"                 # Reset color
 
-    local repo_name branch_name untracked_changes
-
-    # Get the repository name
+    # Get repository name
     repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null)
 
-    # Get the current branch name
+    # Get current branch name
     branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
 
-    # If in a git repo, set the PS1 variable
+    # If inside a git repository, display colored repo and branch info
     if [[ -n $repo_name && -n $branch_name ]]; then
-        echo "${repo_name} @ ${branch_name}"
+        echo "${REPO_COLOR}${repo_name}${RESET} @ ${BRANCH_COLOR}${branch_name}${RESET}"
     fi
 }
-get_git_status() {
 
-     local staged unstaged untracked
+get_git_status() { 
+    git rev-parse --is-inside-work-tree &>/dev/null || return
 
-     # get number of staged
-     staged_prompt=""
-     staged=$(git diff --cached --name-only 2>/dev/null | wc -l)
-     if [[ $staged -ne 0 ]]; then
-         staged_prompt="staged: ${staged}"
-     fi
+    # Repo name (last folder in repo path)
+    repo_name=$(basename "$(git rev-parse --show-toplevel)")
 
-     # get number of untracked
-     unstaged_prompt=""
-     unstaged=$(git status --porcelain 2>/dev/null | grep '^ ' | wc -l)
-     if [[ $unstaged -ne 0 ]]; then
-         unstaged_prompt="unstaged: ${unstaged}"
-     fi
+    # Branch name
+    branch_name=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
 
-     # get number of new
-     untracked_prompt=""
-     untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l)
-     if [[ $untracked -ne 0 ]]; then
-         untracked_prompt="untracked: ${untracked}"
-     fi
+    # Color definitions
+    RED="%F{red}"
+    YELLOW="%F{yellow}"
+    GREEN="%F{green}"
+    BLUE="%F{blue}"
+    RESET="%f"  # Reset color
 
-     # if git repo, set ps1 variable
-     # if [[ -n $staged || -n $unstaged || -n $untracked ]]; then
-     if [[ $staged -ne 0 || $unstaged -ne 0 || $untracked -ne 0 ]]; then
-         # echo "[- \[\033[0;32m\] ${staged_prompt}\[\033[0m\] ${unstaged_prompt} ${untracked_prompt}]"
-         echo "- ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
-     fi
- }
+    staged_prompt=""
+    unstaged_prompt=""
+    untracked_prompt=""
+
+    # Get number of changes
+    staged=$(git diff --cached --name-only 2>/dev/null | wc -l | xargs)
+    unstaged=$(git diff --name-only | wc -l | xargs)
+    untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l | xargs)
+
+    # Build status string
+    # [[ $staged -ne 0 ]] && staged_prompt="${GREEN}● ${staged}${RESET}"
+    # [[ $unstaged -ne 0 ]] && unstaged_prompt="${YELLOW}● ${unstaged}${RESET}"
+    # [[ $untracked -ne 0 ]] && untracked_prompt="${RED}● ${untracked}${RESET}"
+    [[ $staged -ne 0 ]] && staged_prompt="${GREEN}● ${staged}${RESET}"
+    [[ $unstaged -ne 0 ]] && unstaged_prompt="${YELLOW}● ${unstaged}${RESET}"
+    [[ $untracked -ne 0 ]] && untracked_prompt="${RED}● ${untracked}${RESET}"
+
+    # Final output
+    echo "%F{magenta}${branch_name}%F{cyan}%f - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
+}
 
 # Set the prompt
-# export PS1='[\u@\h \W $(get_git_info)]\$ '
+ #- \$(get_git_info) : 
+ export PS1=" 
+ - %F{yellow}\$(pwd)
+ - \$(get_git_status)
+ $ "
+# export PS1='%n@%m %1~ %# '
 
 # if [ "$color_prompt" = yes ]; then
-#      # ${debian_chroot:+($debian_chroot)} \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s")
-#      # \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s") $(get_git_info)
-#      PS1='
-# \033[01;34m\]\w\[\033[00m\] $(get_git_info) $(get_git_status)
-#      $ '
+#       ${debian_chroot:+($debian_chroot)} \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s")
+#       \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s") $(get_git_info)
+#       PS1='\033[01;34m\]\w\[\033[00m\] $(get_git_info) $(get_git_status) $ '
 # else
-#     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+#      PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 # fi
 # PS0='\[\e[2 q\]'
 # unset color_prompt force_color_prompt
@@ -136,7 +163,6 @@ alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
 alias kpm='./kpm'
-alias godot='/bin/Godot_v4.3-stable_linux.x86_64'
 
 # Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -180,31 +206,23 @@ alias gc="git commit"
 alias go="/c/Program\ Files/Go/bin/go.exe"
 alias ll="ls -all"
 #alias vim="/usr/bin/vim.basic"
-# alias vim="nvim"
-alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
-# alias vim="/usr/bin/vim.basic"
-# alias godot="/opt/Godot_v4.3-stable_linux.x86_64"
-# alias clang="/usr/bin/clang-17"
-# alias clang-format='/usr/bin/clang-format-17'
-# alias clang-tidy='/usr/bin/clang-tidy-17'
-# # alias git="/home/sondre/Documents/GitHub/gitt/o/git"
-# alias vim="nvim"
-# # alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
+alias vim="nvim"
+# alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
+alias python ="python3"
 
 # path exports
 export PATH="$PATH:$HOME/Documents/GitHub/alacritty/target/release"
-# export PATH="/opt/"
 
 check_and_connect_expressvpn() {
 	status=$(expressvpn status | grep -o "Connected to")
 
 	# If not connected, connect to ExpressVPN
 	if [ "$status" != "Connected to" ]; then
-                echo "expressvpn connect:"
+                echo "expressvpn connect:" 
 		expressvpn connect
 	else
 		# echo $status
-                echo "expressvpn status:"
+                echo "expressvpn status:" 
 		expressvpn status
 	fi
 }
@@ -231,7 +249,7 @@ function check_and_start_cerebro
 }
 
 function remap_caps_to_ctrl_and_escape
-{
+{ 
     # remap caps to ctrl+escape and escape to caps
     xmodmap -e 'keycode 9 = Caps_Lock'
     setxkbmap -option 'caps:swapescape' -option 'caps:ctrl_modifier'
@@ -239,29 +257,13 @@ function remap_caps_to_ctrl_and_escape
     xcape -e '#66=Escape'
 }
 
-git_configs
-{
-    git config --global --add --bool push.autoSetupRemote true
-    git config --global pull.rebase true
-    git config --global merge.ff no
-    git config --global core.hooksPath ~/.git-hooks/hooks
-    git maintenance start
-    git config --global rerere.enable true
-    git config --global rerere.autoUpdate true
-    git config --global column.ui auto
-    git config --global branch.sort -committerdate
-    git config --global core.editor "vim"
-}
-
 # check_and_start_redshift_gtk
 # check_and_start_cerebro
 # check_and_connect_expressvpn
 # remap_caps_to_ctrl_and_escape
-git_configs
-
-source .cleanCodeStaged
-
-set EDITOR=vim
 
 # export path='/opt/homebrew/opt/bin'
 export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
+eval "$(/opt/homebrew/bin/brew shellenv)"
+

@@ -3,6 +3,7 @@
 !.taskrc
 !.vimrc
 !.bashrc
+!.zshrc
 !.git-hooks
 !.cleanCodeStaged
 !.cleanCode
