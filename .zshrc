@@ -130,13 +130,13 @@ get_git_status() {
     fi
 
     # Assemble and return the prompt
-    echo "repo:${repo_name} branch:${branch_name} - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
+    echo "repo: ${repo_name} branch: ${branch_name} - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
 }
 
 # Set the prompt
  export PS1="
- \$(get_git_info) : \$(pwd)
- \$(get_git_status)
+ - \$(get_git_info) : \$(pwd)
+ - \$(get_git_status)
  $ "
 # export PS1='%n@%m %1~ %# '
 
