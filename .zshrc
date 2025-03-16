@@ -273,3 +273,8 @@ export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
 export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
+# Automatically start tmux if not already running
+if [[ -z "$TMUX" ]]; then
+    exec tmux
+fi
+
