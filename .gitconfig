@@ -18,7 +18,7 @@
 [merge]
 	ff = no
 [core]
-	hooksPath = /home/sondre/.git-hooks/hooks
+	hooksPath = /home/sondre/
 	editor = vim
 [rerere]
 	enable = true
