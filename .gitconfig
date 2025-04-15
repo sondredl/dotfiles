@@ -18,8 +18,8 @@
 [merge]
 	ff = no
 [core]
-	hooksPath = /home/sondre/
 	editor = vim
+	hooksPath = /home/sondre/
 [rerere]
 	enable = true
 	autoUpdate = true
