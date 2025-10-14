@@ -89,8 +89,8 @@ source $ZSH/oh-my-zsh.sh
 # fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch $(uname -m)"
 
+# export ARCHFLAGS="-arch $(uname -m)"
 # Set personal aliases, overriding those provided by Oh My Zsh libs,
 # plugins, and themes. Aliases can be placed here, though Oh My Zsh
 # users are encouraged to define aliases within a top-level file in
@@ -105,11 +105,11 @@ source $ZSH/oh-my-zsh.sh
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 set -o vi
+tmux set-option -g mouse on
 
 alias gs="git status"
 alias gc="git commit"
 alias ga="git add"
-tmux set-option -g mouse on
 alias dyst="/home/xa325/Documents/dyst"
-alias ll="ll -all"
+
 export PATH="$HOME/.local/bin:$PATH"

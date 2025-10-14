@@ -120,6 +120,7 @@ fi
 
 alias vim="nvim"
 alias vi="vim"
+alias ll="ll --all"
 
 bind "set completion-ignore-case on"
 set -o vi
