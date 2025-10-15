@@ -111,5 +111,7 @@ alias gs="git status"
 alias gc="git commit"
 alias ga="git add"
 alias dyst="/home/xa325/Documents/dyst"
+alias lg="lazygit"
+alias ll='ls -1All'
 
 export PATH="$HOME/.local/bin:$PATH"
