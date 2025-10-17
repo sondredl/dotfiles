@@ -113,5 +113,6 @@ alias ga="git add"
 alias dyst="/home/xa325/Documents/dyst"
 alias lg="lazygit"
 alias ll='ls -1All'
+alias vim="nvim"
 
 export PATH="$HOME/.local/bin:$PATH"
