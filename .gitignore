@@ -3,3 +3,5 @@
 !.bashrc
 !.zshrc
 !.gitignore
+!**/*.config
+!.config.nvim
