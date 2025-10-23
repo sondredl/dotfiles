@@ -116,3 +116,8 @@ alias ll='ls -1All'
 alias vim="nvim"
 
 export PATH="$HOME/.local/bin:$PATH"
+
+# Start tmux automatically if not already inside a tmux session
+#if command -v tmux >/dev/null 2>&1; then
+#  [ -z "$TMUX" ] && [ -n "$PS1" ] && exec tmux
+#fi
