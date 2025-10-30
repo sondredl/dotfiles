@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf)
+plugins=(git asdf vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -104,7 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-set -o vi
+# set -o vi
 tmux set-option -g mouse on
 
 alias gs="git status"
@@ -121,3 +121,4 @@ export PATH="$HOME/.local/bin:$PATH"
 #if command -v tmux >/dev/null 2>&1; then
 #  [ -z "$TMUX" ] && [ -n "$PS1" ] && exec tmux
 #fi
+alias path='echo $PATH | tr ":" "\n"'
