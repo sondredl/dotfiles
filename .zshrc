@@ -110,6 +110,7 @@ tmux set-option -g mouse on
 alias gs="git status"
 alias gc="git commit"
 alias ga="git add"
+alias gap="git add . && pre-commit"
 alias dyst="/home/xa325/Documents/dyst"
 alias lg="lazygit"
 alias ll='ls -1All'
@@ -120,5 +121,5 @@ export PATH="$HOME/.local/bin:$PATH"
 # Start tmux automatically if not already inside a tmux session
 #if command -v tmux >/dev/null 2>&1; then
 #  [ -z "$TMUX" ] && [ -n "$PS1" ] && exec tmux
-#fi
 alias path='echo $PATH | tr ":" "\n"'
+#fi
