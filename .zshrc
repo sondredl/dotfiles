@@ -115,6 +115,7 @@ alias dyst="/home/xa325/Documents/dyst"
 alias lg="lazygit"
 alias ll='ls -1All'
 alias vim="nvim"
+alias skapet="ssh sondre@10.36.77.12"
 
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -123,3 +124,8 @@ export PATH="$HOME/.local/bin:$PATH"
 #  [ -z "$TMUX" ] && [ -n "$PS1" ] && exec tmux
 alias path='echo $PATH | tr ":" "\n"'
 #fi
+
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(pyenv init -)"
+eval "$(pyenv virtualenv-init -)"
