@@ -116,6 +116,9 @@ alias lg="lazygit"
 alias ll='ls -1All'
 alias vim="nvim"
 alias skapet="ssh sondre@10.36.77.12"
+alias test-repo="/home/xa325/Documents/microSAR/test-repo"
+alias gitlog="git log --graph --oneline --all --decorate"
+git maintainance start
 
 export PATH="$HOME/.local/bin:$PATH"
 
