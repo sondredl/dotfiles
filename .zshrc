@@ -118,7 +118,7 @@ alias vim="nvim"
 alias skapet="ssh sondre@10.36.77.12"
 alias test-repo="/home/xa325/Documents/microSAR/test-repo"
 alias gitlog="git log --graph --oneline --all --decorate"
-git maintainance start
+git maintenance start
 
 export PATH="$HOME/.local/bin:$PATH"
 
