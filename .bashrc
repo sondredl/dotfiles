@@ -125,3 +125,5 @@ alias ll="ll --all"
 bind "set completion-ignore-case on"
 set -o vi
 export PATH="$PATH:/mnt/c/Users/xa325/AppData/Local/Programs/Microsoft VS Code/bin"
+export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"

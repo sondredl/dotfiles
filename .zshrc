@@ -119,6 +119,7 @@ alias skapet="ssh sondre@10.36.77.12"
 alias test-repo="/home/xa325/Documents/microSAR/test-repo"
 alias gitlog="git log --graph --oneline --all --decorate"
 git maintenance start
+alias emacs="emacs -nw"
 
 export PATH="$HOME/.local/bin:$PATH"
 
@@ -132,3 +133,8 @@ export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
+export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.emacs.d/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+#alias obsidian='./Obsidian.AppImage --no-sandbox &'
+alias obsidian='nohup ~/Obsidian.AppImage --no-sandbox > obsidian.log 2>&1 & disown'
