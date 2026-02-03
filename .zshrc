@@ -113,6 +113,7 @@ alias ga="git add"
 alias gap="git add . && pre-commit"
 alias dyst="/home/xa325/Documents/dyst"
 alias ssa="/home/xa325/Documents/ssa"
+alias adis="/home/xa325/Documents/adis/"
 alias lg="lazygit"
 alias ll='ls -1All'
 alias vim="nvim"
