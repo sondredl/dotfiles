@@ -70,7 +70,7 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git asdf vi-mode)
+plugins=(oc kubectl git asdf vi-mode)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -141,3 +141,6 @@ export PATH="$HOME/.local/bin:$PATH"
 #alias obsidian='./Obsidian.AppImage --no-sandbox &'
 alias obsidian='nohup ~/Obsidian.AppImage --no-sandbox > ~/obsidian.log 2>&1 & disown'
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
+
+eval $(thefuck --alias)
