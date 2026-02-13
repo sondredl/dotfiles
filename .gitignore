@@ -1,10 +1,8 @@
-/*
-!.config/
-!.taskrc
+*
 !.vimrc
 !.bashrc
 !.zshrc
-!.git-hooks
-!.cleanCodeStaged
-!.cleanCode
-!.gitconfig
+!.gitignore
+!.config.nvim
+!.config/**/*
+
