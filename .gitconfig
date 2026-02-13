@@ -31,6 +31,7 @@
 	repo = /home/xa325/Documents/ssa/flight-dynamics
 	repo = /home/xa325/Documents/dyst/development-environment
 	repo = /home/xa325/Documents/dyst/helm-common
+	repo = /home/xa325/Documents/ssa/flight-dynamics-engine
 [rerere]
 	enabled = true
 	autoUpdate = true
