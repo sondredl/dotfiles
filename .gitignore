@@ -5,4 +5,5 @@
 !.gitignore
 !.config.nvim
 !.config/**/*
+!.config
 
