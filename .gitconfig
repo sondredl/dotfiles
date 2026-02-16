@@ -36,3 +36,5 @@
 	repo = /home/sondre/Documents/GitHub/codility
 	repo = /home/sondre/Documents/GitHub/llvm-project
 	repo = /home/sondre/Documents/GitHub/cpython
+[init]
+	templateDir = /home/sondre/.git-template

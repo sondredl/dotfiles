@@ -1,275 +1,110 @@
-# ~/.bashrc: executed by bash(1) for non-login shells.
-# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
-# for examples
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
 
-setopt PROMPT_SUBST
-# Enable completion system
-autoload -Uz compinit
-compinit
+# Path to your Oh My Zsh installation.
+export ZSH="$HOME/.oh-my-zsh"
 
-zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+# Set name of the theme to load --- if set to "random", it will
+# load a random theme each time Oh My Zsh is loaded, in which case,
+# to know which specific one was loaded, run: echo $RANDOM_THEME
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
+ZSH_THEME="robbyrussell"
 
+# Set list of themes to pick from when loading at random
+# Setting this variable when ZSH_THEME=random will cause zsh to load
+# a theme from this variable instead of looking in $ZSH/themes/
+# If set to an empty array, this variable will have no effect.
+# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
-case $- in              # If not running interactively, don't do anything
-    *i*) ;;
-      *) return;;
-esac
+# Uncomment the following line to use case-sensitive completion.
+# CASE_SENSITIVE="true"
 
-HISTCONTROL=ignoreboth  # don't put duplicate lines or lines starting with space in the history.
-# shopt -s histappend     # append to the history file, don't overwrite it
-HISTSIZE=1000           # for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
-HISTFILESIZE=2000
+# Uncomment the following line to use hyphen-insensitive completion.
+# Case-sensitive completion must be off. _ and - will be interchangeable.
+# HYPHEN_INSENSITIVE="true"
 
-#shopt -s checkwinsize   # update the values of LINES and COLUMNS.
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
-#shopt -s globstar      # If set, the pattern "**" used in a pathname expansion context will
-                        # match all files and zero or more directories and subdirectories.
+# Uncomment the following line to change how often to auto-update (in days).
+# zstyle ':omz:update' frequency 13
 
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"        # make less more friendly for non-text input files, see lesspipe(1)
+# Uncomment the following line if pasting URLs and other text is messed up.
+# DISABLE_MAGIC_FUNCTIONS="true"
 
-if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then   # set variable identifying the chroot you work in (used in the prompt below)
-    debian_chroot=$(cat /etc/debian_chroot)
-fi
+# Uncomment the following line to disable colors in ls.
+# DISABLE_LS_COLORS="true"
 
-case "$TERM" in         # set a fancy prompt (non-color, unless we know we "want" color)
-    xterm-color|*-256color) color_prompt=yes;;
-esac
+# Uncomment the following line to disable auto-setting terminal title.
+# DISABLE_AUTO_TITLE="true"
 
-force_color_prompt=yes  # uncomment for a colored prompt, if the terminal has the capability
+# Uncomment the following line to enable command auto-correction.
+# ENABLE_CORRECTION="true"
 
-if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
-fi
+# Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+# COMPLETION_WAITING_DOTS="true"
 
+# Uncomment the following line if you want to disable marking untracked files
+# under VCS as dirty. This makes repository status check for large repositories
+# much, much faster.
+# DISABLE_UNTRACKED_FILES_DIRTY="true"
 
-# source .git-prompt.sh
+# Uncomment the following line if you want to change the command execution time
+# stamp shown in the history command output.
+# You can set one of the optional three formats:
+# "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
+# or set a custom format using the strftime function format specifications,
+# see 'man strftime' for details.
+# HIST_STAMPS="mm/dd/yyyy"
 
-# Function to get the current git branch and repo
-# get_git_info() { 
-# 
-#     local repo_name branch_name untracked_changes
-# 
-#     # Get the repository name
-#     repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null)
-#                 
-#     # Get the current branch name
-#     branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
-# 
-#     # If in a git repo, set the PS1 variable
-#     if [[ -n $repo_name && -n $branch_name ]]; then
-#         echo "${repo_name} @ ${branch_name}"
-#     fi
-# }
-get_git_info() { 
-    # Define colors
-    REPO_COLOR="%F{cyan}"     # Cyan for repo name
-    BRANCH_COLOR="%F{magenta}" # Magenta for branch name
-    RESET="%f"                 # Reset color
+# Would you like to use another custom folder than $ZSH/custom?
+# ZSH_CUSTOM=/path/to/new-custom-folder
 
-    # Get repository name
-    repo_name=$(basename "$(git rev-parse --show-toplevel 2>/dev/null)" 2>/dev/null)
+# Which plugins would you like to load?
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
+# Example format: plugins=(rails git textmate ruby lighthouse)
+# Add wisely, as too many plugins slow down shell startup.
+plugins=(git)
 
-    # Get current branch name
-    branch_name=$(git symbolic-ref --short HEAD 2>/dev/null)
+source $ZSH/oh-my-zsh.sh
 
-    # If inside a git repository, display colored repo and branch info
-    if [[ -n $repo_name && -n $branch_name ]]; then
-        echo "${REPO_COLOR}${repo_name}${RESET} @ ${BRANCH_COLOR}${branch_name}${RESET}"
-    fi
-}
+# User configuration
 
-get_git_status() { 
-    git rev-parse --is-inside-work-tree &>/dev/null || return
+# export MANPATH="/usr/local/man:$MANPATH"
 
-    # Repo name (last folder in repo path)
-    repo_name=$(basename "$(git rev-parse --show-toplevel)")
+# You may need to manually set your language environment
+# export LANG=en_US.UTF-8
 
-    # Branch name
-    branch_name=$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)
-
-    # Color definitions
-    RED="%F{red}"
-    YELLOW="%F{yellow}"
-    GREEN="%F{green}"
-    BLUE="%F{blue}"
-    RESET="%f"  # Reset color
-
-    staged_prompt=""
-    unstaged_prompt=""
-    untracked_prompt=""
-
-    # Get number of changes
-    staged=$(git diff --cached --name-only 2>/dev/null | wc -l | xargs)
-    unstaged=$(git diff --name-only | wc -l | xargs)
-    untracked=$(git status --porcelain 2>/dev/null | grep '^??' | wc -l | xargs)
-
-    # Build status string
-    # [[ $staged -ne 0 ]] && staged_prompt="${GREEN}● ${staged}${RESET}"
-    # [[ $unstaged -ne 0 ]] && unstaged_prompt="${YELLOW}● ${unstaged}${RESET}"
-    # [[ $untracked -ne 0 ]] && untracked_prompt="${RED}● ${untracked}${RESET}"
-    [[ $staged -ne 0 ]] && staged_prompt="${GREEN}● ${staged}${RESET}"
-    [[ $unstaged -ne 0 ]] && unstaged_prompt="${YELLOW}● ${unstaged}${RESET}"
-    [[ $untracked -ne 0 ]] && untracked_prompt="${RED}untracked: ${untracked}${RESET}"
-
-    # Final output
-    echo "%F{magenta}${branch_name}%F{cyan} - ${staged_prompt} ${unstaged_prompt} ${untracked_prompt}"
-}
-
-# Set the prompt
- #- \$(get_git_info) : 
- export PS1=" 
- %F{green}- %F{yellow}\$(pwd)
- %F{green}- \$(get_git_status)
- %F{green}- %F{cyan}$%F{white} "
-# export PS1='%n@%m %1~ %# '
-
-# if [ "$color_prompt" = yes ]; then
-#       ${debian_chroot:+($debian_chroot)} \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s")
-#       \033[01;32m\]\u@\h \033[01;34m\]\w\[\033[00m\] $(__git_ps1 " %s") $(get_git_info)
-#       PS1='\033[01;34m\]\w\[\033[00m\] $(get_git_info) $(get_git_status) $ '
+# Preferred editor for local and remote sessions
+# if [[ -n $SSH_CONNECTION ]]; then
+#   export EDITOR='vim'
 # else
-#      PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
-# fi
-# PS0='\[\e[2 q\]'
-# unset color_prompt force_color_prompt
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
-
-# colored GCC warnings and errors
-export GCC_COLORS='error=01;31:warning=01;35:note=01;36:caret=01;32:locus=01:quote=01'
-
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-alias kpm='./kpm'
-
-# Add an "alert" alias for long running commands.  Use like so: sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-# Alias definitions.
-# You may want to put all your additions into a separate file like
-# ~/.bash_aliases, instead of adding them here directly.
-# See /usr/share/doc/bash-doc/examples in the bash-doc package.
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-# bind -s 'set completion-ignore-case on'
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-# if ! shopt -oq posix; then
-#   if [ -f /usr/share/bash-completion/bash_completion ]; then
-#     . /usr/share/bash-completion/bash_completion
-#   elif [ -f /etc/bash_completion ]; then
-#     . /etc/bash_completion
-#   fi
+#   export EDITOR='nvim'
 # fi
 
-##################################################################################################################################
+# Compilation flags
+# export ARCHFLAGS="-arch $(uname -m)"
 
-
-
-set -o vi
-set show-mode-in-prompt on
-set vi-ins-mode-string "\1\e[6 q\2ins"
-set vi-cmd-mode-string "\1\e[2 q\2cmd"
-# let &t_SI = "\e[5 q"
-# let &t_EI = "\e[2 q"
-# let &t_ti .= "\<esc>[2 q"
-
-alias ga="git add"
-alias gs="git status"
-alias gc="git commit"
-alias go="/c/Program\ Files/Go/bin/go.exe"
+# Set personal aliases, overriding those provided by Oh My Zsh libs,
+# plugins, and themes. Aliases can be placed here, though Oh My Zsh
+# users are encouraged to define aliases within a top-level file in
+# the $ZSH_CUSTOM folder, with .zsh extension. Examples:
+# - $ZSH_CUSTOM/aliases.zsh
+# - $ZSH_CUSTOM/macos.zsh
+# For a full list of active aliases, run `alias`.
+#
+# Example aliases
+# alias zshconfig="mate ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="$HOME/Documents/neovim/build/bin:$PATH"
 alias ll="ls -all"
-#alias vim="/usr/bin/vim.basic"
-alias vim="nvim"
-# alias code="/usr/bin/flatpak run --branch=stable --arch=x86_64 --command=code --file-forwarding com.visualstudio.code --reuse-window @@ %F @@"
-alias python ="python3"
-
-# path exports
-export PATH="$PATH:$HOME/Documents/GitHub/alacritty/target/release"
-
-check_and_connect_expressvpn() {
-	status=$(expressvpn status | grep -o "Connected to")
-
-	# If not connected, connect to ExpressVPN
-	if [ "$status" != "Connected to" ]; then
-                echo "expressvpn connect:" 
-		expressvpn connect
-	else
-		# echo $status
-                echo "expressvpn status:" 
-		expressvpn status
-	fi
-}
-
-function check_and_start_redshift_gtk
-{
-	if ! pgrep -x "redshift" > /dev/null; then
-		echo "redshift not running, starting redshift"
-		redshift-gtk &
-	else
-		echo "redshift-gtk is running"
-	fi
-}
-
-
-function check_and_start_cerebro
-{
-	if ! pgrep -x "cerebro" > /dev/null; then
-		echo "cerebro not running, starting serebro"
-		/opt/Cerebro-0.11.0.AppImage &
-	else
-		echo "cerebro is running"
-	fi
-}
-
-function remap_caps_to_ctrl_and_escape
-{ 
-    # remap caps to ctrl+escape and escape to caps
-    xmodmap -e 'keycode 9 = Caps_Lock'
-    setxkbmap -option 'caps:swapescape' -option 'caps:ctrl_modifier'
-    xmodmap -e 'keycode 255 = Escape'
-    xcape -e '#66=Escape'
-}
-
-# check_and_start_redshift_gtk
-# check_and_start_cerebro
-# check_and_connect_expressvpn
-# remap_caps_to_ctrl_and_escape
-
-# export path='/opt/homebrew/opt/bin'
-# export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH"
-# eval "$(/opt/homebrew/bin/brew shellenv)"
-
+set -o vi
+#
+alias doom='./.config/emacs/bin/doom run -nw'
+alias gs='git status'
