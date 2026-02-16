@@ -3,8 +3,8 @@
 -- Add any additional keymaps here
 --
 
-local del = vim.keymap.del
+-- local del = vim.keymap.del
 
 -- Unmap annoying move on esc
-del({ "n", "i", "v" }, "<A-j>")
-del({ "n", "i", "v" }, "<A-k>")
+-- del({ "n", "i", "v" }, "<A-j>")
+-- del({ "n", "i", "v" }, "<A-k>")

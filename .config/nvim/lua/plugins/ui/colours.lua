@@ -1,4 +1,4 @@
-local colorscheme = "kanagawa"
+local colorscheme = "zellner"
 
 -- Set the priority of the loading so it matches the current selected theme
 local function scheme(key, cfg)
