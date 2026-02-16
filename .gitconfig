@@ -30,3 +30,6 @@
 	repo = /home/sondre/Documents/GitHub/cpython
 [init]
 	templateDir = /home/sondre/.git-template
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
