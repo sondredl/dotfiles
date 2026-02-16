@@ -1,14 +1,6 @@
-[filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
 [user]
+	email = sondre.lindkjolen@spacenorway.com
 	name = Sondre Lindkjolen
-	email = sondredl@gmail.com
-[credential "https://github.com"]
-	helper =
-	helper = !/usr/bin/gh auth git-credential
 [push]
 	autoSetupRemote = true
 	default = current
