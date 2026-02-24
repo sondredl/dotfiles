@@ -32,6 +32,8 @@
 	repo = /home/xa325/Documents/dyst/development-environment
 	repo = /home/xa325/Documents/dyst/helm-common
 	repo = /home/xa325/Documents/ssa/flight-dynamics-engine
+	repo = /home/xa325/Documents/dyst/network-policies
+	repo = /home/xa325/Documents/dyst/contact-scheduler
 [rerere]
 	enabled = true
 	autoUpdate = true
