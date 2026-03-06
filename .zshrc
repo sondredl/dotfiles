@@ -112,6 +112,7 @@ alias gc="git commit"
 alias ga="git add"
 alias gap="git add . && pre-commit"
 alias lg="lazygit"
+alias ld="lazydocker"
 alias ll='ls -1All'
 alias vim="nvim"
 alias skapet="ssh sondre@10.36.77.12"
@@ -297,3 +298,5 @@ fi
 #
 # eval "$(zoxide init zsh)"
 #
+
+# source ~/.tmux.conf

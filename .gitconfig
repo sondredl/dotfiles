@@ -34,6 +34,7 @@
 	repo = /home/xa325/Documents/ssa/flight-dynamics-engine
 	repo = /home/xa325/Documents/dyst/network-policies
 	repo = /home/xa325/Documents/dyst/contact-scheduler
+	repo = /home/xa325/Documents/adis/adis-node-controller
 [rerere]
 	enabled = true
 	autoUpdate = true
