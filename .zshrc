@@ -312,3 +312,37 @@ setopt HIST_IGNORE_ALL_DUPS    # remove older duplicate entries when a command i
 setopt HIST_REDUCE_BLANKS      # remove superfluous spaces
 setopt HIST_IGNORE_SPACE       # don't store commands that start with a space
 
+
+# Enable vi mode
+set -o vi
+
+# Save your original prompt (whatever it was set to by your theme/framework)
+ORIG_PROMPT=${PROMPT:-$PS1}
+
+# Default: insert mode indicator
+MODE_IND="%F{green}INS%f"
+
+function zle-keymap-select {
+  # Only show CMD when we're truly in vicmd; everything else = INS
+  if [[ $KEYMAP == vicmd ]]; then
+    MODE_IND="%F{red}CMD%f"
+  else
+    MODE_IND="%F{green}INS%f"
+  fi
+
+  PROMPT="[$MODE_IND] $ORIG_PROMPT"
+  zle reset-prompt
+}
+zle -N zle-keymap-select
+
+function zle-line-init {
+  # When a new line starts, assume insert mode
+  MODE_IND="%F{green}INS%f"
+  PROMPT="[$MODE_IND] $ORIG_PROMPT"
+  zle reset-prompt
+}
+zle -N zle-line-init
+
+# Initialize the prompt for the current shell
+PROMPT="[$MODE_IND] $ORIG_PROMPT"
+
