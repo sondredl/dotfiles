@@ -300,3 +300,15 @@ fi
 #
 
 # source ~/.tmux.conf
+HISTSIZE=5000
+SAVEHIST=2000
+HISTFILE=$HOME/.zsh_history
+
+unsetopt SHARE_HISTORY 
+unsetopt APPEND_HISTORY
+setopt INC_APPEND_HISTORY
+setopt HIST_IGNORE_DUPS        # don't record the same command twice in a row
+setopt HIST_IGNORE_ALL_DUPS    # remove older duplicate entries when a command is entered again
+setopt HIST_REDUCE_BLANKS      # remove superfluous spaces
+setopt HIST_IGNORE_SPACE       # don't store commands that start with a space
+
