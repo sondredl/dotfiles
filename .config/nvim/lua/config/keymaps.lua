@@ -37,3 +37,6 @@ vim.api.nvim_create_user_command("Sex", function()
 end, {})
 
 vim.keymap.set("n", "<leader>q", "<cmd>bd<cr>", { desc = "Close current buffer" })
+--
+-- Make <C-v> enter Visual Block mode again
+vim.keymap.set("n", "<C-v>", "<C-v>", { noremap = true, silent = true })
