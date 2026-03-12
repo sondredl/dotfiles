@@ -119,6 +119,7 @@ alias skapet="ssh sondre@10.36.77.12"
 alias gitlog="git log --graph --oneline --all --decorate"
 git maintenance start
 alias emacs="emacs -nw"
+alias h="history"
 
 export PATH="$HOME/.local/bin:$PATH"
 

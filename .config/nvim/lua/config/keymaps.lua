@@ -35,3 +35,5 @@ end, {})
 vim.api.nvim_create_user_command("Sex", function()
   vim.cmd("split | Neotree reveal")
 end, {})
+
+vim.keymap.set("n", "<leader>q", "<cmd>bd<cr>", { desc = "Close current buffer" })
