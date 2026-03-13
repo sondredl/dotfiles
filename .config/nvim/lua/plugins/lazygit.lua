@@ -14,11 +14,5 @@ return {
       -- "lg" in normal mode to open LazyGit
       { "lg", "<cmd>LazyGit<cr>", mode = "n", desc = "LazyGit (lg)" },
     },
-    config = function()
-      -- Optional: create a :Lg command that calls LazyGit
-      vim.api.nvim_create_user_command("Lg", function()
-        vim.cmd("LazyGit")
-      end, {})
-    end,
   },
 }
