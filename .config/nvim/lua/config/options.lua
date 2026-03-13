@@ -12,9 +12,9 @@ vim.g.lazyvim_colorscheme = "tokyonight"
 -- ~/.config/nvim/lua/config/options.lua
 
 -- Reduce time Neovim waits for mapped sequences
-vim.opt.timeoutlen = 100 -- default is 1000; try 300 or even 200
+vim.opt.timeoutlen = 200 -- default is 1000; try 300 or even 200
 
 -- Shorten the delay for 'CursorHold' events
-vim.opt.updatetime = 100 -- default is 4000; 200–300 is typical
+vim.opt.updatetime = 200 -- default is 4000; 200–300 is typical
 
 vim.g.lazyvim_prettier_needs_config = false
