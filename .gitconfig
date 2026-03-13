@@ -35,6 +35,10 @@
 	repo = /home/xa325/Documents/dyst/network-policies
 	repo = /home/xa325/Documents/dyst/contact-scheduler
 	repo = /home/xa325/Documents/adis/adis-node-controller
+	repo = /home/xa325/Documents/ssa/geneos
+	repo = /home/xa325/download/geneos
+	repo = /home/xa325/download/godot
+	repo = /home/xa325/Documents/ssa/geneos-base-image
 [rerere]
 	enabled = true
 	autoUpdate = true
