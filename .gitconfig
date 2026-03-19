@@ -39,6 +39,7 @@
 	repo = /home/xa325/download/geneos
 	repo = /home/xa325/download/godot
 	repo = /home/xa325/Documents/ssa/geneos-base-image
+	repo = /home/xa325/projects/flight-dynamics-engine
 [rerere]
 	enabled = true
 	autoUpdate = true
@@ -48,3 +49,5 @@
 [credential "https://gist.github.com"]
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
+[fetch]
+	prune = true
