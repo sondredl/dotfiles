@@ -222,3 +222,5 @@ set EDITOR=vim
 export PATH="$PATH:/mnt/c/Users/xa325/AppData/Local/Programs/Microsoft VS Code/bin"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
+
+eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv bash)"

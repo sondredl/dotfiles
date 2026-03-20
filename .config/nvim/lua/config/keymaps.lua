@@ -8,3 +8,48 @@
 -- Unmap annoying move on esc
 -- del({ "n", "i", "v" }, "<A-j>")
 -- del({ "n", "i", "v" }, "<A-k>")
+
+-- vim.keymap.set("v", "s", "c", { noremap = true, silent = true })
+
+local map = vim.keymap.set
+
+-- Replace :Ex / :Explore / :Sex / :Vex with neo-tree
+
+-- :Ex / :Explore → open neo-tree
+map("n", "<leader>e", "<cmd>Neotree toggle reveal<cr>", { desc = "Explorer (Neo-tree)" })
+
+-- Optional: if you use :Ex in command-line, you can alias it:
+vim.api.nvim_create_user_command("Ex", function()
+  vim.cmd("Neotree toggle reveal")
+end, {})
+
+vim.api.nvim_create_user_command("Explore", function()
+  vim.cmd("Neotree toggle reveal")
+end, {})
+
+-- Optional: split-like commands using neo-tree
+vim.api.nvim_create_user_command("Vex", function()
+  vim.cmd("vsplit | Neotree reveal")
+end, {})
+
+vim.api.nvim_create_user_command("Sex", function()
+  vim.cmd("split | Neotree reveal")
+end, {})
+
+vim.keymap.set("n", "<leader>q", "<cmd>bd<cr>", { desc = "Close current buffer" })
+--
+-- Make <C-v> enter Visual Block mode again
+vim.keymap.set("n", "<C-v>", "<C-v>", { noremap = true, silent = true })
+-- ~/.config/nvim/lua/config/keymaps.lua
+local map = vim.keymap.set
+
+-- Normal mode: toggle comment on current line with Ctrl-/
+map("n", "<C-_>", function()
+  require("Comment.api").toggle.linewise.current()
+end, { desc = "Toggle comment (line)" })
+
+-- Visual mode: toggle comment on selection with Ctrl-/
+map("x", "<C-_>", function()
+  -- `vim.fn.visualmode()` preserves the visual mode type
+  require("Comment.api").toggle.linewise(vim.fn.visualmode())
+end, { desc = "Toggle comment (visual)" })

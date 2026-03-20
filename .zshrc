@@ -110,12 +110,14 @@ alias gc="git commit"
 alias ga="git add"
 alias gap="git add . && pre-commit"
 alias lg="lazygit"
+alias ld="lazydocker"
 alias ll='ls -1All'
 alias vim="nvim"
 alias skapet="ssh sondre@10.36.77.12"
 alias gitlog="git log --graph --oneline --all --decorate"
 git maintenance start
 alias emacs="emacs -nw"
+alias h="history"
 
 export PATH="$HOME/.local/bin:$PATH"
 
