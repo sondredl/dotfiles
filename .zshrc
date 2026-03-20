@@ -295,3 +295,13 @@ fi
 #
 # eval "$(zoxide init zsh)"
 #
+#
+
+function remap_caps_to_ctrl_and_escape
+{
+    # remap caps to ctrl+escape and escape to caps
+    xmodmap -e 'keycode 9 = Caps_Lock'
+    setxkbmap -option 'caps:swapescape' -option 'caps:ctrl_modifier'
+    xmodmap -e 'keycode 255 = Escape'
+    xcape -e '#66=Escape'
+}

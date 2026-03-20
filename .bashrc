@@ -4,8 +4,8 @@
 
 # If not running interactively, don't do anything
 case $- in
-    *i*) ;;
-      *) return;;
+*i*) ;;
+*) return ;;
 esac
 
 # don't put duplicate lines or lines starting with space in the history.
@@ -32,12 +32,12 @@ shopt -s checkwinsize
 
 # set variable identifying the chroot you work in (used in the prompt below)
 if [ -z "${debian_chroot:-}" ] && [ -r /etc/debian_chroot ]; then
-    debian_chroot=$(cat /etc/debian_chroot)
+  debian_chroot=$(cat /etc/debian_chroot)
 fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color|*-256color) color_prompt=yes;;
+xterm-color | *-256color) color_prompt=yes ;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -46,42 +46,41 @@ esac
 #force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
-    if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
-    else
-	color_prompt=
-    fi
+  if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
+    # We have color support; assume it's compliant with Ecma-48
+    # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+    # a case would tend to support setf rather than setaf.)
+    color_prompt=yes
+  else
+    color_prompt=
+  fi
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$ '
 else
-    PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
+  PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi
 unset color_prompt force_color_prompt
 
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
+xterm* | rxvt*)
+  PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
+  ;;
+*) ;;
 esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  #alias dir='dir --color=auto'
+  #alias vdir='vdir --color=auto'
 
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
 fi
 
 # colored GCC warnings and errors
@@ -102,7 +101,7 @@ alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo
 # See /usr/share/doc/bash-doc/examples in the bash-doc package.
 
 if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
+  . ~/.bash_aliases
 fi
 
 # enable programmable completion features (you don't need to enable
@@ -124,7 +123,6 @@ alias ll="ll --all"
 
 bind "set completion-ignore-case on"
 set -o vi
-<<<<<<< HEAD
 set show-mode-in-prompt on
 set vi-ins-mode-string "\1\e[6 q\2ins"
 set vi-cmd-mode-string "\1\e[2 q\2cmd"
@@ -153,68 +151,64 @@ export PATH="$PATH:$HOME/Documents/GitHub/alacritty/target/release"
 # export PATH="/opt/"
 
 check_and_connect_expressvpn() {
-	status=$(expressvpn status | grep -o "Connected to")
+  status=$(expressvpn status | grep -o "Connected to")
 
-	# If not connected, connect to ExpressVPN
-	if [ "$status" != "Connected to" ]; then
-                echo "expressvpn connect:"
-		expressvpn connect
-	else
-		# echo $status
-                echo "expressvpn status:"
-		expressvpn status
-	fi
+  # If not connected, connect to ExpressVPN
+  if [ "$status" != "Connected to" ]; then
+    echo "expressvpn connect:"
+    expressvpn connect
+  else
+    # echo $status
+    echo "expressvpn status:"
+    expressvpn status
+  fi
 }
 
-function check_and_start_redshift_gtk
-{
-	if ! pgrep -x "redshift" > /dev/null; then
-		echo "redshift not running, starting redshift"
-		redshift-gtk &
-	else
-		echo "redshift-gtk is running"
-	fi
+function check_and_start_redshift_gtk {
+  if ! pgrep -x "redshift" >/dev/null; then
+    echo "redshift not running, starting redshift"
+    redshift-gtk &
+  else
+    echo "redshift-gtk is running"
+  fi
 }
 
-
-function check_and_start_cerebro
-{
-	if ! pgrep -x "cerebro" > /dev/null; then
-		echo "cerebro not running, starting serebro"
-		/opt/Cerebro-0.11.0.AppImage &
-	else
-		echo "cerebro is running"
-	fi
+function check_and_start_cerebro {
+  if ! pgrep -x "cerebro" >/dev/null; then
+    echo "cerebro not running, starting serebro"
+    /opt/Cerebro-0.11.0.AppImage &
+  else
+    echo "cerebro is running"
+  fi
 }
 
-function remap_caps_to_ctrl_and_escape
-{
-    # remap caps to ctrl+escape and escape to caps
-    xmodmap -e 'keycode 9 = Caps_Lock'
-    setxkbmap -option 'caps:swapescape' -option 'caps:ctrl_modifier'
-    xmodmap -e 'keycode 255 = Escape'
-    xcape -e '#66=Escape'
+function remap_caps_to_ctrl_and_escape {
+  # remap caps to ctrl+escape and escape to caps
+  xmodmap -e 'keycode 9 = Caps_Lock'
+  setxkbmap -option 'caps:swapescape' -option 'caps:ctrl_modifier'
+  xmodmap -e 'keycode 255 = Escape'
+  xcape -e '#66=Escape'
 }
 
 git_configs
 {
-    # git config --global --add --bool push.autoSetupRemote true
-    git config --global pull.rebase true
-    git config --global merge.ff no
-    # git config --global core.hooksPath ~/.git-hooks/hooks
-    git config --global core.hooksPath ~/
-    git maintenance start
-    git config --global rerere.enable true
-    git config --global rerere.autoUpdate true
-    git config --global column.ui auto
-    git config --global branch.sort -committerdate
-    git config --global core.editor "vim"
+  # git config --global --add --bool push.autoSetupRemote true
+  git config --global pull.rebase true
+  git config --global merge.ff no
+  # git config --global core.hooksPath ~/.git-hooks/hooks
+  git config --global core.hooksPath ~/
+  git maintenance start
+  git config --global rerere.enable true
+  git config --global rerere.autoUpdate true
+  git config --global column.ui auto
+  git config --global branch.sort -committerdate
+  git config --global core.editor "vim"
 }
 
 # check_and_start_redshift_gtk
 # check_and_start_cerebro
 # check_and_connect_expressvpn
- remap_caps_to_ctrl_and_escape
+remap_caps_to_ctrl_and_escape
 # git_configs
 
 source .cleanCodeStaged
@@ -224,8 +218,7 @@ set EDITOR=vim
 # export path='/opt/homebrew/opt/bin'
 # export PATH='/opt/homebrew/Cellar/llvm/19.1.3/bin/'
 . "$HOME/.cargo/env"
-=======
+
 export PATH="$PATH:/mnt/c/Users/xa325/AppData/Local/Programs/Microsoft VS Code/bin"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
->>>>>>> sn
