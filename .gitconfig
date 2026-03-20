@@ -1,8 +1,6 @@
 [user]
 	email = sondre.lindkjolen@spacenorway.com
 	name = Sondre Lindkjolen
-[push]
-	autoSetupRemote = true
 [maintenance]
 	repo = /home/xa325
 	repo = /mnt/c/Users/xa325
@@ -51,3 +49,6 @@
 	helper = !/usr/bin/gh auth git-credential
 [fetch]
 	prune = true
+[push]
+	autosetupremote = true
+	defaultForce = with-lease

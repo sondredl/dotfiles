@@ -347,3 +347,5 @@ zle -N zle-line-init
 # Initialize the prompt for the current shell
 PROMPT="[$MODE_IND] $ORIG_PROMPT"
 
+source ~/.env
+source ~/.env.secret
