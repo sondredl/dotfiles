@@ -38,6 +38,8 @@
 	repo = /home/xa325/download/godot
 	repo = /home/xa325/Documents/ssa/geneos-base-image
 	repo = /home/xa325/projects/flight-dynamics-engine
+	repo = /home/xa325/Documents/ssa/godotpy
+	repo = /home/xa325/download/godotpy
 [rerere]
 	enabled = true
 	autoUpdate = true
@@ -48,6 +50,8 @@
 	helper = 
 	helper = !/usr/bin/gh auth git-credential
 [fetch]
+	prune = true
+[pull]
 	prune = true
 [push]
 	autosetupremote = true
