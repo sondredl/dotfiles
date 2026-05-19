@@ -40,6 +40,9 @@
 	repo = /home/xa325/projects/flight-dynamics-engine
 	repo = /home/xa325/Documents/ssa/godotpy
 	repo = /home/xa325/download/godotpy
+	repo = /home/xa325/Documents/dyst/space-weather
+	repo = /home/xa325/Documents/dyst/python-ground-scripts
+	repo = /home/xa325/Documents/artifacts
 [rerere]
 	enabled = true
 	autoUpdate = true
@@ -56,3 +59,5 @@
 [push]
 	autosetupremote = true
 	defaultForce = with-lease
+[core]
+	editor = vim
