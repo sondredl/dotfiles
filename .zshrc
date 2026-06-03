@@ -307,3 +307,4 @@ function remap_caps_to_ctrl_and_escape
     xmodmap -e 'keycode 255 = Escape'
     xcape -e '#66=Escape'
 }
+
