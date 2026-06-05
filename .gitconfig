@@ -43,6 +43,7 @@
 	repo = /home/xa325/Documents/dyst/space-weather
 	repo = /home/xa325/Documents/dyst/python-ground-scripts
 	repo = /home/xa325/Documents/artifacts
+	repo = /home/sondre
 [rerere]
 	enabled = true
 	autoUpdate = true

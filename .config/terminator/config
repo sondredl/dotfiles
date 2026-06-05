@@ -1,0 +1,15 @@
+[global_config]
+[keybindings]
+[profiles]
+  [[default]]
+    scroll_on_keystroke = False
+    scroll_on_output = True
+[layouts]
+  [[default]]
+    [[[window0]]]
+      type = Window
+      parent = ""
+    [[[child1]]]
+      type = Terminal
+      parent = window0
+[plugins]
