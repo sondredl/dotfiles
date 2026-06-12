@@ -9,6 +9,22 @@ export ZSH="$HOME/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="robbyrussell"
+# Enable completion system
+autoload -Uz compinit
+compinit
+
+# Use menu-style completion (Tab cycles through matches)
+zstyle ':completion:*' menu select
+
+# Case-insensitive completion (foo == Foo == FOO)
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Z}'
+
+# Show completion descriptions in a nicer format
+zstyle ':completion:*:descriptions' format '%F{yellow}%d%f'
+
+# Complete the arguments of `cd` using only directories
+zstyle ':completion:*:cd:*' tag-order local-directories path-directories
+
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -129,10 +145,10 @@ export PATH="$HOME/.local/bin:$PATH"
 alias path='echo $PATH | tr ":" "\n"'
 #fi
 
-export PATH="$HOME/.pyenv/bin:$PATH"
-eval "$(pyenv init --path)"
-eval "$(pyenv init -)"
-eval "$(pyenv virtualenv-init -)"
+#export PATH="$HOME/.pyenv/bin:$PATH"
+#eval "$(pyenv init --path)"
+#eval "$(pyenv init -)"
+#eval "$(pyenv virtualenv-init -)"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
@@ -140,11 +156,11 @@ export PATH="$HOME/.local/bin:$PATH"
 alias obsidian='nohup ~/Obsidian.AppImage --no-sandbox > ~/obsidian.log 2>&1 & disown'
 
 
-eval $(thefuck --alias)
+#eval $(thefuck --alias)
 
-. "$HOME/.atuin/bin/env"
+#. "$HOME/.atuin/bin/env"
 
-eval "$(atuin init zsh)"
+#eval "$(atuin init zsh)"
 alias bat="batcat"
 alias du='dust'
 alias loc="tokei"
@@ -348,4 +364,4 @@ zle -N zle-line-init
 PROMPT="[$MODE_IND] $ORIG_PROMPT"
 
 source ~/.env
-source ~/.env.secret
+

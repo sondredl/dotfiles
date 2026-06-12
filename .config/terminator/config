@@ -1,9 +1,15 @@
 [global_config]
+  extra_styling = False
+  putty_paste_style_source_clipboard = True
 [keybindings]
 [profiles]
   [[default]]
+    background_darkness = 0.8
+    background_type = transparent
+    show_titlebar = False
     scroll_on_keystroke = False
     scroll_on_output = True
+    title_hide_sizetext = True
 [layouts]
   [[default]]
     [[[window0]]]
