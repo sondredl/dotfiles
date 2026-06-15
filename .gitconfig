@@ -48,6 +48,10 @@
 	repo = /home/sondre/Documents/spaceNorway/flight-dynamics-engine
 	repo = /home/sondre/Documents/spaceNorway/test-repo
 	repo = /home/sondre/Documents/spaceNorway/contact-scheduler
+	repo = /home/sondre/Documents/spaceNorway/deployment-configurations
+	repo = /home/sondre/Documents/spaceNorway/development-environment
+	auto = true
+	strategy = incremental
 [rerere]
 	enabled = true
 	autoUpdate = true

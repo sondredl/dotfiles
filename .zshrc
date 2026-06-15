@@ -133,7 +133,7 @@ alias ll='ls -1All'
 alias vim="nvim"
 alias skapet="ssh sondre@10.36.77.12"
 alias gitlog="git log --graph --oneline --all --decorate"
-git maintenance start
+#git maintenance start
 alias emacs="emacs -nw"
 alias h="history"
 
