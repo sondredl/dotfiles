@@ -154,7 +154,7 @@ export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.emacs.d/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 #alias obsidian='./Obsidian.AppImage --no-sandbox &'
-alias obsidian='nohup ~/Obsidian.AppImage --no-sandbox > ~/obsidian.log 2>&1 & disown'
+#alias obsidian='nohup ~/Obsidian.AppImage --no-sandbox > ~/obsidian.log 2>&1 & disown'
 
 
 #eval $(thefuck --alias)
