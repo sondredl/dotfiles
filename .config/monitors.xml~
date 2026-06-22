@@ -1,6 +1,24 @@
 <monitors version="2">
   <configuration>
     <logicalmonitor>
+      <x>0</x>
+      <y>120</y>
+      <scale>1</scale>
+      <monitor>
+        <monitorspec>
+          <connector>DP-3</connector>
+          <vendor>LEN</vendor>
+          <product>M15</product>
+          <serial>V30DCKNG</serial>
+        </monitorspec>
+        <mode>
+          <width>1920</width>
+          <height>1080</height>
+          <rate>60.000</rate>
+        </mode>
+      </monitor>
+    </logicalmonitor>
+    <logicalmonitor>
       <x>1920</x>
       <y>0</y>
       <scale>1</scale>
@@ -16,24 +34,6 @@
           <width>1920</width>
           <height>1200</height>
           <rate>60.003</rate>
-        </mode>
-      </monitor>
-    </logicalmonitor>
-    <logicalmonitor>
-      <x>0</x>
-      <y>0</y>
-      <scale>1</scale>
-      <monitor>
-        <monitorspec>
-          <connector>DP-3</connector>
-          <vendor>LEN</vendor>
-          <product>M15</product>
-          <serial>V30DCKNG</serial>
-        </monitorspec>
-        <mode>
-          <width>1920</width>
-          <height>1080</height>
-          <rate>60.000</rate>
         </mode>
       </monitor>
     </logicalmonitor>
